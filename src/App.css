@@ -29,12 +29,12 @@
 
 .navigation-bar-light {
     background: rgb(235, 235, 235);
-    box-shadow: 0 12px 10px -8px rgba(0, 0, 0, 0.3);
+    box-shadow: 2px 8px 10px -2px rgba(0, 0, 0, 0.3);
 }
 
 .navigation-bar-dark {
     background: rgb(40, 40, 40);
-    box-shadow: 0 12px 10px -8px rgba(255, 255, 255, 0.3);
+    box-shadow: 2px 8px 10px -2px rgba(255, 255, 255, 0.3);
 }
 
 .navigation-bar-item {

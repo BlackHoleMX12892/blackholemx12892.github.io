@@ -28,7 +28,7 @@ export default function App() {
         <div className={`navigation-bar-item ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => setPage("privacy")}>
           <p>Privacy</p>
         </div>
-        <div onClick={() => theme == "light" ? setTheme("dark") : setTheme("light")} style={{marginLeft: "auto", marginRight: "10px", marginTop: "8px"}}>
+        <div className="navigation-bar-theme-switcher" onClick={() => theme == "light" ? setTheme("dark") : setTheme("light")} style={{marginLeft: "auto", marginRight: "10px", marginTop: "8px"}}>
           {theme == "light" ? <Moon /> : <Sun />}
         </div>
       </nav>

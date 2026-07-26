@@ -70,6 +70,14 @@
     padding: 0 10px 0 10px;
 }
 
+.navigation-bar-theme-switcher {
+    transition: scale 300ms ease-in;
+}
+
+.navigation-bar-theme-switcher:hover {
+    scale: 1.1;
+}
+
 .main-content {
     width: 100%;
     height: calc(100vh - 89px);

@@ -173,6 +173,7 @@
     padding: 20px;
     border-radius: 10px;
     display: flex;
+    transition: background-color 300ms ease-in, color 300ms ease-in;
 }
 
 .footer-light {

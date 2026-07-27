@@ -63,22 +63,51 @@ function Home({ theme }: { theme: string }) {
       </div>
       <h1>Who am I?</h1>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi nobis quo eius ex obcaecati quis consequuntur provident cupiditate reiciendis perspiciatis, laudantium quae consectetur error hic illo dolores magnam repellat labore illum explicabo recusandae natus quasi, magni ad. Iure nulla non necessitatibus fugit dolorum quibusdam veniam suscipit consectetur in voluptas accusantium maiores voluptatibus incidunt magnam ipsum cupiditate, a vitae accusamus possimus sed inventore? Eum dolores aperiam tenetur asperiores quasi suscipit molestias minus porro modi cumque provident perferendis enim dolore quia, nemo itaque necessitatibus rerum vero velit ipsam officiis optio ducimus quas. Distinctio dolores facere ab odio exercitationem maiores nemo quam minima, incidunt assumenda voluptatem soluta ipsa vel aperiam quod itaque deleniti quidem nisi dolor sapiente consequuntur reprehenderit earum iusto quisquam? Velit repudiandae eaque expedita illo quibusdam tempore architecto excepturi doloribus nihil itaque cupiditate perferendis quasi provident in quod dolore inventore veniam ipsam sapiente est id alias optio, voluptas omnis. Accusantium voluptatem ipsum iure, impedit quam accusamus libero eaque! Harum nulla repellendus tempora alias hic minima ex, natus quidem obcaecati animi voluptate molestias consequuntur voluptates eius libero assumenda aperiam ipsam. Blanditiis illo delectus, fugiat alias quam deserunt veritatis, reiciendis quod voluptatem quasi laborum aliquam recusandae, autem odio quo voluptas similique libero! Corporis.</p>
+      <Footer theme={theme} />
     </>
   )
 }
 
 function About({ theme }: { theme: string }) {
-  return <>About{theme}</>
+  return (
+    <>
+      About{theme}
+      <Footer theme={theme} />
+    </>
+  )
 }
 
 function Location({ theme }: { theme: string }) {
-  return <>Location{theme}</>
+  return (
+    <>
+      Location{theme}
+      <Footer theme={theme} />
+    </>
+  )
 }
 
 function Contact({ theme }: { theme: string }) {
-  return <>Contact{theme}</>
+  return (
+    <>
+      Contact{theme}
+      <Footer theme={theme} />
+    </>
+  )
 }
 
 function Privacy({ theme }: { theme: string }) {
-  return <>Privacy{theme}</>
+  return (
+    <>
+      Privacy{theme}
+      <Footer theme={theme} />
+    </>
+  )
+}
+
+function Footer({ theme }: { theme: string }) {
+  return (
+    <footer className={`footer ${theme == "light" ? "footer-light" : "footer-dark"}`}>
+      <p>The Swift logo is a trademark of Apple Inc.</p>
+    </footer>
+  )
 }

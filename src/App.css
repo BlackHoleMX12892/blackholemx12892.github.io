@@ -165,3 +165,21 @@
 .home-banner-buttons span {
     margin-left: 8px;
 }
+
+/* footer style */
+
+.footer {
+    margin: 10px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.footer-light {
+    background-color: rgb(235, 235, 235);
+    box-shadow: 2px 8px 10px -2px rgba(0, 0, 0, 0.3);
+}
+
+.footer-dark {
+    background-color: rgb(40, 40, 40);
+    box-shadow: 2px 8px 10px -2px rgba(255, 255, 255, 0.3);
+}

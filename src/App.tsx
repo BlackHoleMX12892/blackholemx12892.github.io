@@ -4,6 +4,9 @@ import profilepicture from './assets/149122895.jpeg'
 import { FolderGit2, Mail, Sun, Moon } from 'lucide-react'
 
 import SwfitLogo from "./assets/Swift_logo_color.svg"
+import JavaScriptLogo from "./assets/Unofficial_JavaScript_logo_2.svg.webp"
+import TuxPenguin from "./assets/Tux.svg.webp"
+import CPPLogo from "./assets/ISO_C++_Logo.svg.webp"
 
 export default function App() {
   const initialtheme = new Date().getHours() < 19 && new Date().getHours() > 6 ? "light" : "dark"
@@ -50,10 +53,10 @@ function Home({ theme }: { theme: string }) {
     <>
       <div className="home-banner">
         <div className={`home-banner-items ${theme == "light" ? "home-banner-items-light" : "home-banner-items-dark"}`}>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/1280px-ISO_C%2B%2B_Logo.svg.png" alt="" />
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Tux.svg/1280px-Tux.svg.png" alt="" />
-          <img src={SwfitLogo} alt="" />
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/330px-Unofficial_JavaScript_logo_2.svg.png" alt="" />
+          <img src={CPPLogo} alt="C++ Logo" />
+          <img src={TuxPenguin} alt="Tux penguin" />
+          <img src={SwfitLogo} alt="Swift logo" />
+          <img src={JavaScriptLogo} alt="JavaScript logo" />
         </div>
         <h1>BlackHoleMX</h1>
         <div className="home-banner-buttons">
@@ -107,7 +110,7 @@ function Privacy({ theme }: { theme: string }) {
 function Footer({ theme }: { theme: string }) {
   return (
     <footer className={`footer ${theme == "light" ? "footer-light" : "footer-dark"}`}>
-      <p>The Swift logo is a trademark of Apple Inc.</p>
+      <p>Swift and the Swift logo are trademarks of Apple Inc.</p>
     </footer>
   )
 }

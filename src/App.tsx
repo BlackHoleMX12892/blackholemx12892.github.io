@@ -1,5 +1,5 @@
 import './App.css'
-import { useState } from 'react'
+import { useState, createContext, useContext } from 'react'
 import profilepicture from './assets/149122895.jpeg'
 import { FolderGit2, Mail, Sun, Moon, BadgeInfo } from 'lucide-react'
 
@@ -8,6 +8,13 @@ import JavaScriptLogo from "./assets/Unofficial_JavaScript_logo_2.svg.webp"
 import TuxPenguin from "./assets/Tux.svg.webp"
 import CPPLogo from "./assets/ISO_C++_Logo.svg.webp"
 
+interface PageContextType {
+  page: string
+  setPage: React.Dispatch<React.SetStateAction<string>>
+}
+
+const PageContext = createContext<PageContextType | undefined>(undefined)
+
 export default function App() {
   const initialtheme = new Date().getHours() < 19 && new Date().getHours() > 6 ? "light" : "dark"
 
@@ -15,6 +22,7 @@ export default function App() {
   const [page, setPage] = useState("home")
 
   return (
+    <PageContext.Provider value={{ page, setPage }}>
     <div className={`main-container ${theme == "light" ? "main-container-light" : "main-container-dark"}`}>
       <nav className={`navigation-bar ${theme == "light" ? "navigation-bar-light" : "navigation-bar-dark"}`}>
         <div className={`navigation-bar-item ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} style={{backgroundImage: `url(${profilepicture})`, backgroundSize: "cover", width: "19px", height: "19px", cursor: "default"}} />
@@ -24,8 +32,8 @@ export default function App() {
         <div className={`navigation-bar-item ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => setPage("about")}>
           <p>About</p>
         </div>
-        <div className={`navigation-bar-item ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => setPage("location")}>
-          <p>Location</p>
+        <div className={`navigation-bar-item ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => setPage("projects")}>
+          <p>Projects</p>
         </div>
         <div className={`navigation-bar-item ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => setPage("contact")}>
           <p>Contact</p>
@@ -40,15 +48,18 @@ export default function App() {
       <main className="main-content">
         {page == "home" ? <Home theme={theme} /> : ""}
         {page == "about" ? <About theme={theme} /> : ""}
-        {page == "location" ? <Location theme={theme} /> : ""}
+        {page == "projects" ? <Projects theme={theme} /> : ""}
         {page == "contact" ? <Contact theme={theme} /> : ""}
         {page == "privacy" ? <Privacy theme={theme} /> : ""}
       </main>
     </div>
+    </PageContext.Provider>
   )
 }
 
 function Home({ theme }: { theme: string }) {
+  const context = useContext(PageContext)
+
   return (
     <>
       <div className="home-banner">
@@ -61,7 +72,7 @@ function Home({ theme }: { theme: string }) {
         <h1>BlackHoleMX</h1>
         <div className="home-banner-buttons">
           <a href="https://github.com/BlackHoleMX12892"><FolderGit2 /> <span>My projects</span></a>
-          <div><Mail /> <span>Contact</span></div>
+          <div onClick={() => context?.setPage("contact")}><Mail /> <span>Contact</span></div>
         </div>
       </div>
       <div className="home-main">
@@ -74,7 +85,7 @@ function Home({ theme }: { theme: string }) {
             <p style={{marginBottom: "10px"}}>I have experimented with basic C and very basic Rust.</p>
             <p>I like to eat Brisket and visiting the USA.</p>
             <div className="home-card-buttons">
-              <div><BadgeInfo /> <span>Read more</span></div>
+              <div onClick={() => context?.setPage("about")}><BadgeInfo /> <span>Read more</span></div>
             </div>
           </div>
         </div>
@@ -93,10 +104,10 @@ function About({ theme }: { theme: string }) {
   )
 }
 
-function Location({ theme }: { theme: string }) {
+function Projects({ theme }: { theme: string }) {
   return (
     <>
-      Location{theme}
+      Projects{theme}
       <Footer theme={theme} />
     </>
   )

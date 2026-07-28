@@ -103,7 +103,7 @@
 }
 
 .home-banner h1::after {
-    content: 'Hover me';
+    content: attr(data-text);
     font-size: small;
     position: absolute;
     right: 0;

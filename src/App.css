@@ -32,12 +32,12 @@
 
 .navigation-bar-light {
     background-color: rgb(235, 235, 235);
-    box-shadow: 2px 8px 10px -2px rgba(0, 0, 0, 0.3);
+    box-shadow: 2px 8px 16px -2px rgba(0, 0, 0, 0.3);
 }
 
 .navigation-bar-dark {
     background-color: rgb(40, 40, 40);
-    box-shadow: 2px 8px 10px -2px rgba(255, 255, 255, 0.3);
+    box-shadow: 2px 8px 16px -2px rgba(248, 255, 211, 0.15);
 }
 
 .navigation-bar-item {
@@ -218,15 +218,16 @@
     padding: 20px;
     border-radius: 10px;
     display: flex;
+    flex-direction: column;
     transition: background-color 300ms ease-in, color 300ms ease-in;
 }
 
 .footer-light {
     background-color: rgb(235, 235, 235);
-    box-shadow: 2px 8px 10px -2px rgba(0, 0, 0, 0.3);
+    box-shadow: 2px 8px 16px -2px rgba(0, 0, 0, 0.3);
 }
 
 .footer-dark {
     background-color: rgb(40, 40, 40);
-    box-shadow: 2px 8px 10px -2px rgba(255, 255, 255, 0.3);
+    box-shadow: 2px 8px 16px -2px rgba(248, 255, 211, 0.15);
 }

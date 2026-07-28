@@ -123,7 +123,8 @@ function Privacy({ theme }: { theme: string }) {
 function Footer({ theme }: { theme: string }) {
   return (
     <footer className={`footer ${theme == "light" ? "footer-light" : "footer-dark"}`}>
-      <p>Swift and the Swift logo are trademarks of Apple Inc.</p>
+      <p style={{marginBottom: "5px"}}>Swift and the Swift logo are trademarks of Apple Inc.</p>
+      <p>Made by me using React and Lucide icons.</p>
     </footer>
   )
 }

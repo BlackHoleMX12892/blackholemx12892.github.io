@@ -21,7 +21,7 @@ const LanguageContext = createContext("en")
 
 export default function App() {
   const initialtheme = new Date().getHours() < 19 && new Date().getHours() > 6 ? "light" : "dark"
-  const initiallanguage = localStorage.getItem("language") || navigator.language.slice(0, 2)
+  const initiallanguage = localStorage.getItem("language") || (navigator.language.slice(0, 2) == "es" || navigator.language.slice(0, 2) == "en" ? navigator.language.slice(0, 2) : "en")
 
   const [theme, setTheme] = useState(initialtheme)
   const [page, setPage] = useState("home")

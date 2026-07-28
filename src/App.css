@@ -178,6 +178,7 @@
     width: 50%;
     margin: 20px;
     padding: 20px;
+    max-width: 600px;
 }
 
 .home-card h1 {

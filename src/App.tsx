@@ -1,7 +1,7 @@
 import './App.css'
 import { useState } from 'react'
 import profilepicture from './assets/149122895.jpeg'
-import { FolderGit2, Mail, Sun, Moon } from 'lucide-react'
+import { FolderGit2, Mail, Sun, Moon, BadgeInfo } from 'lucide-react'
 
 import SwfitLogo from "./assets/Swift_logo_color.svg"
 import JavaScriptLogo from "./assets/Unofficial_JavaScript_logo_2.svg.webp"
@@ -61,14 +61,20 @@ function Home({ theme }: { theme: string }) {
         <h1>BlackHoleMX</h1>
         <div className="home-banner-buttons">
           <a href="https://github.com/BlackHoleMX12892"><FolderGit2 /> <span>My projects</span></a>
-          <a href=""><Mail /> <span>Contact</span></a>
+          <div><Mail /> <span>Contact</span></div>
         </div>
       </div>
       <div className="home-main">
         <div className="home-section">
           <div className="home-card">
             <h1>Who am I?</h1>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto, quasi!</p>
+            <p style={{marginBottom: "10px"}}>Hi, I'm a mexican hobbyist developer who is interested in way too many programming related things (sometimes more than I can understand).</p>
+            <p style={{marginBottom: "10px"}}>I can speak Spanish (native), English (proficently), and a bit of German (not able to communicate fluently).</p>
+            <p style={{marginBottom: "10px"}}>I'm learning React by developing this website. I know C++, some JavaScript, Swift (enough to create an app), good HTML and good CSS.</p>
+            <p>I have experimented with basic C and very basic Rust.</p>
+            <div className="home-card-buttons">
+              <div><BadgeInfo /> <span>Read more</span></div>
+            </div>
           </div>
         </div>
       </div>

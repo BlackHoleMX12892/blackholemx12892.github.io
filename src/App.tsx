@@ -21,10 +21,16 @@ const LanguageContext = createContext("en")
 
 export default function App() {
   const initialtheme = new Date().getHours() < 19 && new Date().getHours() > 6 ? "light" : "dark"
+  const initiallanguage = localStorage.getItem("language") || navigator.language.slice(0, 2)
 
   const [theme, setTheme] = useState(initialtheme)
   const [page, setPage] = useState("home")
-  const [language, setLanguage] = useState("en")
+  const [language, setLanguage] = useState(initiallanguage)
+
+  function changeLang(lang: string) {
+    setLanguage(lang)
+    localStorage.setItem("language", lang)
+  }
 
   return (
     <ThemeContext.Provider value={theme}>
@@ -48,7 +54,7 @@ export default function App() {
         <div className={`navigation-bar-item ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => setPage("privacy")}>
           <p>{language == "en" ? "Privacy" : "Privacidad"}</p>
         </div>
-        <div className="navigation-bar-theme-switcher" onClick={() => language == "en" ? setLanguage("es") : setLanguage("en")} style={{marginLeft: "auto", marginRight: "15px", marginTop: "8px", display: "flex", flexDirection: "row", alignItems: "center", cursor: "default"}}>
+        <div className="navigation-bar-theme-switcher" onClick={() => language == "en" ? changeLang("es") : changeLang("en")} style={{marginLeft: "auto", marginRight: "15px", marginTop: "8px", display: "flex", flexDirection: "row", alignItems: "center", cursor: "default"}}>
           <Languages />
           {language == "en" ? "ES" : "EN"}
         </div>
@@ -103,11 +109,11 @@ function Home() {
               <p>I like to eat Brisket and visiting the USA.</p>
             </> :
             <>
-              <p style={{marginBottom: "10px"}}>Hola, soy un desarollador mexicano, me interesan muchas áreas aunque a veces esto dificulta mi aprendizaje.</p>
+              <p style={{marginBottom: "10px"}}>Hola, soy un desarollador mexicano, me interesan muchas áreas aunque a veces eso dificulta mi aprendizaje.</p>
               <p style={{marginBottom: "10px"}}>Mis idiomas son: Español (nativo), Inglés (Fluido), Alemán (básico).</p>
               <p>Estoy aprendiendo React con este sitio, pero sé C++, JavaScript, Swift (lo suficiente para hacer apps), HTML y CSS.</p>
               <p style={{marginBottom: "10px"}}>He experimentado con otros lenguajes como C, Rust y Python.</p>
-              <p>Me gusta visitar Estados Unidos.</p>
+              <p>Dato extra: Me gusta visitar Estados Unidos.</p>
             </>}
             <div className="home-card-buttons">
               <div onClick={() => page?.setPage("about")}><BadgeInfo /> <span>{language == "en" ? "Read more" : "Leer más"}</span></div>
@@ -150,7 +156,7 @@ function Contact() {
 function Privacy() {
   return (
     <>
-      Privacy
+      I don't remember having a reason to add this, I promise I don't get any data from you.
       <Footer />
     </>
   )

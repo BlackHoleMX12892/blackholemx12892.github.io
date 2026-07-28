@@ -14,6 +14,7 @@ interface PageContextType {
 }
 
 const PageContext = createContext<PageContextType | undefined>(undefined)
+const ThemeContext = createContext("light")
 
 export default function App() {
   const initialtheme = new Date().getHours() < 19 && new Date().getHours() > 6 ? "light" : "dark"
@@ -22,6 +23,7 @@ export default function App() {
   const [page, setPage] = useState("home")
 
   return (
+    <ThemeContext.Provider value={theme}>
     <PageContext.Provider value={{ page, setPage }}>
     <div className={`main-container ${theme == "light" ? "main-container-light" : "main-container-dark"}`}>
       <nav className={`navigation-bar ${theme == "light" ? "navigation-bar-light" : "navigation-bar-dark"}`}>
@@ -46,24 +48,26 @@ export default function App() {
         </div>
       </nav>
       <main className="main-content">
-        {page == "home" ? <Home theme={theme} /> : ""}
-        {page == "about" ? <About theme={theme} /> : ""}
-        {page == "projects" ? <Projects theme={theme} /> : ""}
-        {page == "contact" ? <Contact theme={theme} /> : ""}
-        {page == "privacy" ? <Privacy theme={theme} /> : ""}
+        {page == "home" ? <Home /> : ""}
+        {page == "about" ? <About /> : ""}
+        {page == "projects" ? <Projects /> : ""}
+        {page == "contact" ? <Contact /> : ""}
+        {page == "privacy" ? <Privacy /> : ""}
       </main>
     </div>
     </PageContext.Provider>
+    </ThemeContext.Provider>
   )
 }
 
-function Home({ theme }: { theme: string }) {
-  const context = useContext(PageContext)
+function Home() {
+  const pagecontext = useContext(PageContext)
+  const themecontext = useContext(ThemeContext)
 
   return (
     <>
       <div className="home-banner">
-        <div className={`home-banner-items ${theme == "light" ? "home-banner-items-light" : "home-banner-items-dark"}`}>
+        <div className={`home-banner-items ${themecontext == "light" ? "home-banner-items-light" : "home-banner-items-dark"}`}>
           <img src={CPPLogo} alt="C++ Logo" />
           <img src={TuxPenguin} alt="Tux penguin" />
           <img src={SwfitLogo} alt="Swift logo" />
@@ -72,7 +76,7 @@ function Home({ theme }: { theme: string }) {
         <h1>BlackHoleMX</h1>
         <div className="home-banner-buttons">
           <a href="https://github.com/BlackHoleMX12892"><FolderGit2 /> <span>My projects</span></a>
-          <div onClick={() => context?.setPage("contact")}><Mail /> <span>Contact</span></div>
+          <div onClick={() => pagecontext?.setPage("contact")}><Mail /> <span>Contact</span></div>
         </div>
       </div>
       <div className="home-main">
@@ -85,55 +89,56 @@ function Home({ theme }: { theme: string }) {
             <p style={{marginBottom: "10px"}}>I have experimented with basic C and very basic Rust.</p>
             <p>I like to eat Brisket and visiting the USA.</p>
             <div className="home-card-buttons">
-              <div onClick={() => context?.setPage("about")}><BadgeInfo /> <span>Read more</span></div>
+              <div onClick={() => pagecontext?.setPage("about")}><BadgeInfo /> <span>Read more</span></div>
             </div>
           </div>
         </div>
       </div>
-      <Footer theme={theme} />
+      <Footer />
     </>
   )
 }
 
-function About({ theme }: { theme: string }) {
+function About() {
   return (
     <>
-      About{theme}
-      <Footer theme={theme} />
+      About
+      <Footer />
     </>
   )
 }
 
-function Projects({ theme }: { theme: string }) {
+function Projects() {
   return (
     <>
-      Projects{theme}
-      <Footer theme={theme} />
+      Projects
+      <Footer />
     </>
   )
 }
 
-function Contact({ theme }: { theme: string }) {
+function Contact() {
   return (
     <>
-      Contact{theme}
-      <Footer theme={theme} />
+      Contact
+      <Footer />
     </>
   )
 }
 
-function Privacy({ theme }: { theme: string }) {
+function Privacy() {
   return (
     <>
-      Privacy{theme}
-      <Footer theme={theme} />
+      Privacy
+      <Footer />
     </>
   )
 }
 
-function Footer({ theme }: { theme: string }) {
+function Footer() {
+  const themecontext = useContext(ThemeContext)
   return (
-    <footer className={`footer ${theme == "light" ? "footer-light" : "footer-dark"}`}>
+    <footer className={`footer ${themecontext == "light" ? "footer-light" : "footer-dark"}`}>
       <p style={{marginBottom: "5px"}}>Swift and the Swift logo are trademarks of Apple Inc.</p>
       <p>Made by me using React and Lucide icons.</p>
     </footer>

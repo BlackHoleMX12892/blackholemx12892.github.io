@@ -66,7 +66,7 @@ export default function App() {
           {theme == "light" ? <Moon /> : <Sun />}
         </div>
       </nav>
-      <main className="main-content">
+      <main onClick={() => showSidebar == true ? setShowSidebar(false) : null} className="main-content">
         {page == "home" ? <Home /> : ""}
         {page == "about" ? <About /> : ""}
         {page == "projects" ? <Projects /> : ""}
@@ -75,11 +75,11 @@ export default function App() {
       </main>
       <aside className={`sidebar ${theme == "light" ? "sidebar-light" : "sidebar-dark"}`} style={showSidebar == true ? {display: "flex"} : {display: "none"}}>
         <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Projects</li>
-          <li>Contact</li>
-          <li>Privacy</li>
+          <li onClick={() => {setPage("home"); setShowSidebar(false)}}>{language == "en" ? "Home" : "Inicio"}</li>
+          <li onClick={() => {setPage("about"); setShowSidebar(false)}}>{language == "en" ? "About" : "Información"}</li>
+          <li onClick={() => {setPage("projects"); setShowSidebar(false)}}>{language == "en" ? "Projects" : "Proyectos"}</li>
+          <li onClick={() => {setPage("contact"); setShowSidebar(false)}}>{language == "en" ? "Contact" : "Contacto"}</li>
+          <li onClick={() => {setPage("privacy"); setShowSidebar(false)}}>{language == "en" ? "Privacy" : "Privacidad"}</li>
         </ul>
       </aside>
     </div>

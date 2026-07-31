@@ -1,7 +1,7 @@
 import './App.css'
 import { useState, createContext, useContext } from 'react'
 import profilepicture from './assets/149122895.jpeg'
-import { FolderGit2, Mail, Sun, Moon, BadgeInfo, Languages } from 'lucide-react'
+import { FolderGit2, Mail, Sun, Moon, BadgeInfo, Languages, Menu } from 'lucide-react'
 
 import SwfitLogo from "./assets/Swift_logo_color.svg"
 import JavaScriptLogo from "./assets/Unofficial_JavaScript_logo_2.svg.webp"
@@ -26,6 +26,7 @@ export default function App() {
   const [theme, setTheme] = useState(initialtheme)
   const [page, setPage] = useState("home")
   const [language, setLanguage] = useState(initiallanguage)
+  const [showSidebar, setShowSidebar] = useState(false)
 
   function changeLang(lang: string) {
     setLanguage(lang)
@@ -38,20 +39,23 @@ export default function App() {
     <LanguageContext.Provider value={language}>
     <div className={`main-container ${theme == "light" ? "main-container-light" : "main-container-dark"}`}>
       <nav className={`navigation-bar ${theme == "light" ? "navigation-bar-light" : "navigation-bar-dark"}`}>
-        <div className={`navigation-bar-item ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} style={{backgroundImage: `url(${profilepicture})`, backgroundSize: "cover", width: "19px", height: "19px", cursor: "default"}} />
-        <div className={`navigation-bar-item ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => setPage("home")}>
+        <div onClick={() => showSidebar == false ? setShowSidebar(true) : setShowSidebar(false)} className={"navigation-bar-switcher navigation-bar-menu-button"}>
+          <Menu />
+        </div>
+        <div className={`navigation-bar-item ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} style={{backgroundImage: `url(${profilepicture})`, backgroundSize: "cover", width: "19px", height: "19px", minWidth: "19px", minHeight: "19px", maxWidth: "19px", maxHeight: "19px", cursor: "default"}} />
+        <div className={`navigation-bar-item navigation-bar-button ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => setPage("home")}>
           <p>{language == "en" ? "Home" : "Inicio"}</p>
         </div>
-        <div className={`navigation-bar-item ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => setPage("about")}>
+        <div className={`navigation-bar-item navigation-bar-button ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => setPage("about")}>
           <p>{language == "en" ? "About" : "Información"}</p>
         </div>
-        <div className={`navigation-bar-item ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => setPage("projects")}>
+        <div className={`navigation-bar-item navigation-bar-button ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => setPage("projects")}>
           <p>{language == "en" ? "Projects" : "Proyectos"}</p>
         </div>
-        <div className={`navigation-bar-item ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => setPage("contact")}>
+        <div className={`navigation-bar-item navigation-bar-button ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => setPage("contact")}>
           <p>{language == "en" ? "Contact" : "Contacto"}</p>
         </div>
-        <div className={`navigation-bar-item ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => setPage("privacy")}>
+        <div className={`navigation-bar-item navigation-bar-button ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => setPage("privacy")}>
           <p>{language == "en" ? "Privacy" : "Privacidad"}</p>
         </div>
         <div className="navigation-bar-switcher" onClick={() => language == "en" ? changeLang("es") : changeLang("en")} style={{marginLeft: "auto", marginRight: "15px", marginTop: "8px", display: "flex", flexDirection: "row", alignItems: "center", cursor: "default"}}>
@@ -69,6 +73,15 @@ export default function App() {
         {page == "contact" ? <Contact /> : ""}
         {page == "privacy" ? <Privacy /> : ""}
       </main>
+      <aside className={`sidebar ${theme == "light" ? "sidebar-light" : "sidebar-dark"}`} style={showSidebar == true ? {display: "flex"} : {display: "none"}}>
+        <ul>
+          <li>Home</li>
+          <li>About</li>
+          <li>Projects</li>
+          <li>Contact</li>
+          <li>Privacy</li>
+        </ul>
+      </aside>
     </div>
     </LanguageContext.Provider>
     </PageContext.Provider>

@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
-
 /* layout style */
 .main-container {
     height: 100vh;
@@ -37,7 +36,7 @@
 
 .navigation-bar-dark {
     background-color: rgb(40, 40, 40);
-    box-shadow: 2px 8px 16px -2px rgba(248, 255, 211, 0.15);
+    box-shadow: 2px 8px 16px -2px rgba(255, 226, 141, 0.15);
 }
 
 .navigation-bar-item {
@@ -70,11 +69,11 @@
     padding: 0 10px 0 10px;
 }
 
-.navigation-bar-theme-switcher {
+.navigation-bar-switcher {
     transition: scale 300ms ease-in;
 }
 
-.navigation-bar-theme-switcher:hover {
+.navigation-bar-switcher:hover {
     scale: 1.2;
 }
 
@@ -229,5 +228,5 @@
 
 .footer-dark {
     background-color: rgb(40, 40, 40);
-    box-shadow: 2px 8px 16px -2px rgba(248, 255, 211, 0.15);
+    box-shadow: 2px 8px 16px -2px rgba(255, 226, 141, 0.15);
 }

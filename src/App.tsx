@@ -54,11 +54,11 @@ export default function App() {
         <div className={`navigation-bar-item ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => setPage("privacy")}>
           <p>{language == "en" ? "Privacy" : "Privacidad"}</p>
         </div>
-        <div className="navigation-bar-theme-switcher" onClick={() => language == "en" ? changeLang("es") : changeLang("en")} style={{marginLeft: "auto", marginRight: "15px", marginTop: "8px", display: "flex", flexDirection: "row", alignItems: "center", cursor: "default"}}>
+        <div className="navigation-bar-switcher" onClick={() => language == "en" ? changeLang("es") : changeLang("en")} style={{marginLeft: "auto", marginRight: "15px", marginTop: "8px", display: "flex", flexDirection: "row", alignItems: "center", cursor: "default"}}>
           <Languages />
           {language == "en" ? "ES" : "EN"}
         </div>
-        <div className="navigation-bar-theme-switcher" onClick={() => theme == "light" ? setTheme("dark") : setTheme("light")} style={{marginRight: "10px", marginTop: "8px", cursor: "default"}}>
+        <div className="navigation-bar-switcher" onClick={() => theme == "light" ? setTheme("dark") : setTheme("light")} style={{marginRight: "10px", marginTop: "8px", cursor: "default"}}>
           {theme == "light" ? <Moon /> : <Sun />}
         </div>
       </nav>
@@ -113,7 +113,7 @@ function Home() {
               <p style={{marginBottom: "10px"}}>Mis idiomas son: Español (nativo), Inglés (Fluido), Alemán (básico).</p>
               <p>Estoy aprendiendo React con este sitio, pero sé C++, JavaScript, Swift (lo suficiente para hacer apps), HTML y CSS.</p>
               <p style={{marginBottom: "10px"}}>He experimentado con otros lenguajes como C, Rust y Python.</p>
-              <p>Dato extra: Me gusta visitar Estados Unidos.</p>
+              <p>Dato extra: Me gusta visitar Estados Unidos y el BBQ.</p>
             </>}
             <div className="home-card-buttons">
               <div onClick={() => page?.setPage("about")}><BadgeInfo /> <span>{language == "en" ? "Read more" : "Leer más"}</span></div>

@@ -141,7 +141,7 @@ function Home() {
             {language == "en" ?
             <>
               <p style={{marginBottom: "10px"}}>Currently I create things with the purpose of learning, for example:</p>
-              <ul style={{marginBottom: "10px"}}>
+              <ul style={{marginBottom: "10px", '--list-color': `${theme == "light" ? "black" : "white"}`} as React.CSSProperties}>
                 <li>ishell: a shell project for unix to learn c++.</li>
                 <li>tripblueprint: a macOS swiftUI trip planning app.</li>
                 <li>This website to learn React.</li>

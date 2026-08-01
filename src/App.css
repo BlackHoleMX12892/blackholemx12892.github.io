@@ -125,6 +125,25 @@
     box-shadow: 2px 8px 16px -2px rgba(255, 226, 141, 0.15);
 }
 
+.sidebar ul li {
+    list-style: none;
+    margin: 20px;
+    padding: 20px;
+    transition: background-color 300ms ease-in;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.sidebar-light ul li {
+    background-color: rgb(40, 40, 40);
+    color: rgb(255, 255, 255);
+}
+
+.sidebar-dark ul li {
+    background-color: rgb(235, 235, 235);
+    color: rgb(0, 0, 0)
+}
+
 /* Home style */
 .home-banner {
     width: 100%;

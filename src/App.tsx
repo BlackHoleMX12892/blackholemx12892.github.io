@@ -135,6 +135,28 @@ function Home() {
             </div>
           </div>
         </div>
+        <div className="home-section">
+          <div className="home-card" style={{marginLeft: "auto"}}>
+            <h1>{language == "en" ? "Projects" : "Proyectos"}</h1>
+            {language == "en" ?
+            <>
+              <p style={{marginBottom: "10px"}}>Currently I create things with the purpose of learning, for example:</p>
+              <ul style={{marginBottom: "10px"}}>
+                <li>ishell: a shell project for unix to learn c++.</li>
+                <li>tripblueprint: a macOS swiftUI trip planning app.</li>
+                <li>This website to learn React.</li>
+              </ul>
+              <p>Do I use AI? Not really, just sometimes to understand some code and to get information.</p>
+            </> :
+            <>
+            
+            </>}
+            <div className="home-card-buttons">
+              <a href="https://github.com/BlackHoleMX12892"><SiGithub /> <span>Github</span></a>
+              <div onClick={() => page?.setPage("projects")}><Boxes /> <span>{language == "en" ? "Projects" : "Proyectos"}</span></div>
+            </div>
+          </div>
+        </div>
       </div>
       <Footer />
     </>

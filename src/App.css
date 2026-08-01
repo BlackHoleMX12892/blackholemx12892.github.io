@@ -132,7 +132,7 @@
     cursor: pointer;
     border-radius: 5px;
     display: flex;
-    justify-content: center;
+    flex-direction: row;
     align-items: center;
     width: auto;
 }
@@ -149,6 +149,14 @@
 .sidebar-dark ul li {
     background-color: rgb(235, 235, 235);
     color: rgb(0, 0, 0)
+}
+
+.sidebar-light ul li:hover {
+    background-color: rgb(95, 95, 95);
+}
+
+.sidebar-dark ul li:hover {
+    background-color: rgb(180, 180, 180);
 }
 
 /* Home style */
@@ -213,7 +221,6 @@
 }
 
 .home-banner-buttons a, .home-banner-buttons div {
-    text-decoration: none;
     display: flex;
     color: black;
     align-items: center;
@@ -258,7 +265,7 @@
     flex-direction: row;
 }
 
-.home-card-buttons div {
+.home-card-buttons div, .home-card-buttons a {
     color: black;
     display: flex;
     align-items: center;
@@ -270,7 +277,7 @@
     transition: background-color 300ms ease-in;
 }
 
-.home-card-buttons div:hover {
+.home-card-buttons div:hover, .home-card-buttons a:hover {
     background-color: royalblue;
 }
 

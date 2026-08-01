@@ -1,12 +1,14 @@
 import './App.css'
 import { useState, createContext, useContext } from 'react'
 import profilepicture from './assets/149122895.jpeg'
-import { FolderGit2, Mail, Sun, Moon, BadgeInfo, Languages, Menu, House, Boxes, ShieldUser } from 'lucide-react'
+import { Mail, Sun, Moon, BadgeInfo, Languages, Menu, House, Boxes, ShieldUser } from 'lucide-react'
+import { SiGithub } from '@icons-pack/react-simple-icons'
 
 import SwfitLogo from "./assets/Swift_logo_color.svg"
 import JavaScriptLogo from "./assets/Unofficial_JavaScript_logo_2.svg.webp"
 import TuxPenguin from "./assets/Tux.svg.webp"
 import CPPLogo from "./assets/ISO_C++_Logo.svg.webp"
+
 
 const ThemeContext = createContext("light")
 
@@ -105,7 +107,7 @@ function Home() {
         </div>
         <h1 data-text={language == "en" ? "Hover me" : "Pasa el mouse aquí"}>BlackHoleMX</h1>
         <div className="home-banner-buttons">
-          <a href="https://github.com/BlackHoleMX12892"><FolderGit2 /> <span>{language == "en" ? "My projects" : "Mis proyectos"}</span></a>
+          <a href="https://github.com/BlackHoleMX12892"><SiGithub /> <span>{language == "en" ? "My projects" : "Mis proyectos"}</span></a>
           <div onClick={() => page?.setPage("contact")}><Mail /> <span>{language == "en" ? "Contact" : "Contacto"}</span></div>
         </div>
       </div>

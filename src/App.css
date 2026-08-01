@@ -112,7 +112,6 @@
     border-radius: 10px;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
 }
 
 .sidebar-light {
@@ -135,6 +134,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: auto;
 }
 
 .sidebar ul li span {

@@ -1,7 +1,7 @@
 import './App.css'
 import { useState, createContext, useContext } from 'react'
 import profilepicture from './assets/149122895.jpeg'
-import { FolderGit2, Mail, Sun, Moon, BadgeInfo, Languages, Menu, House, Boxes } from 'lucide-react'
+import { FolderGit2, Mail, Sun, Moon, BadgeInfo, Languages, Menu, House, Boxes, ShieldUser } from 'lucide-react'
 
 import SwfitLogo from "./assets/Swift_logo_color.svg"
 import JavaScriptLogo from "./assets/Unofficial_JavaScript_logo_2.svg.webp"
@@ -75,11 +75,11 @@ export default function App() {
       </main>
       <aside className={`sidebar ${theme == "light" ? "sidebar-light" : "sidebar-dark"}`} style={showSidebar == true ? {display: "flex"} : {display: "none"}}>
         <ul>
-          <li onClick={() => {setPage("home"); setShowSidebar(false)}}><House /> {language == "en" ? "Home" : "Inicio"}</li>
-          <li onClick={() => {setPage("about"); setShowSidebar(false)}}><BadgeInfo /> {language == "en" ? "About" : "Información"}</li>
-          <li onClick={() => {setPage("projects"); setShowSidebar(false)}}><Boxes /> {language == "en" ? "Projects" : "Proyectos"}</li>
-          <li onClick={() => {setPage("contact"); setShowSidebar(false)}}><Mail /> {language == "en" ? "Contact" : "Contacto"}</li>
-          <li onClick={() => {setPage("privacy"); setShowSidebar(false)}}>{language == "en" ? "Privacy" : "Privacidad"}</li>
+          <li onClick={() => {setPage("home"); setShowSidebar(false)}}><House /> <span>{language == "en" ? "Home" : "Inicio"}</span></li>
+          <li onClick={() => {setPage("about"); setShowSidebar(false)}}><BadgeInfo /> <span>{language == "en" ? "About" : "Información"}</span></li>
+          <li onClick={() => {setPage("projects"); setShowSidebar(false)}}><Boxes /> <span>{language == "en" ? "Projects" : "Proyectos"}</span></li>
+          <li onClick={() => {setPage("contact"); setShowSidebar(false)}}><Mail /> <span>{language == "en" ? "Contact" : "Contacto"}</span></li>
+          <li onClick={() => {setPage("privacy"); setShowSidebar(false)}}><ShieldUser /> <span>{language == "en" ? "Privacy" : "Privacidad"}</span></li>
         </ul>
       </aside>
     </div>

@@ -132,6 +132,13 @@
     transition: background-color 300ms ease-in;
     cursor: pointer;
     border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidebar ul li span {
+    margin-left: 10px;
 }
 
 .sidebar-light ul li {

@@ -169,6 +169,8 @@ function Home() {
             </div>
           </div>
         </div>
+        <img style={{marginLeft: "20px"}} src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fblackholemx12892.github.io%2F&label=Visits&icon=broadcast&color=%23dc3545&message=&style=for-the-badge&tz=UTC
+" alt="visit-counter" />
       </div>
       <Footer />
     </>

@@ -111,7 +111,6 @@
     transition: background-color 300ms ease-in;
     border-radius: 10px;
     flex-direction: column;
-    justify-content: center;
 }
 
 .sidebar-light {
@@ -198,6 +197,12 @@
     border-radius: 5px;
     translate: 220px -80px;
     transition: background-color 300ms ease-in;
+}
+
+@media screen and (max-width: 700px) {
+    .home-banner-items {
+        translate: 100px -80px;
+    }
 }
 
 .home-banner-items-light {

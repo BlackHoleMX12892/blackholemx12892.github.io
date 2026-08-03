@@ -255,6 +255,18 @@
     max-width: 600px;
 }
 
+@media screen and (max-width: 840px) {
+    .home-card {
+        width: 80%;
+        max-width: auto;
+        margin-left: 0 !important;
+    }
+
+    .home-section {
+        align-items: center;
+    }
+}
+
 .home-card h1 {
     margin-bottom: 10px;
 }

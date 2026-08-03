@@ -22,7 +22,13 @@ const PageContext = createContext<PageContextType | undefined>(undefined)
 const LanguageContext = createContext("en")
 
 export default function App() {
-  const initialtheme = new Date().getHours() < 19 && new Date().getHours() > 6 ? "light" : "dark"
+  const initialtheme = () => {
+    if (window.matchMedia("(prefers-color-scheme: dark)")) {
+      return "dark"
+    } else {
+      return new Date().getHours() < 19 && new Date().getHours() > 6 ? "light" : "dark"
+    }
+  }
   const initiallanguage = localStorage.getItem("language") || (navigator.language.slice(0, 2) == "es" || navigator.language.slice(0, 2) == "en" ? navigator.language.slice(0, 2) : "en")
 
   const [theme, setTheme] = useState(initialtheme)

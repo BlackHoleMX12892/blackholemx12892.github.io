@@ -153,7 +153,7 @@ function Home() {
               <ul style={{marginBottom: "10px", '--list-color': `${theme == "light" ? "black" : "white"}`} as React.CSSProperties}>
                 <li>ishell: un interprete de comandos en C++ para sistemas tipo unix.</li>
                 <li>tripblueprint: una app de viajes para macOS hecho con swiftUI.</li>
-                <li>Éste sitio para aprender React.</li>
+                <li>Esté sitio para aprender React.</li>
               </ul>
               <p>Utilizo IA en mis proyectos? Sí, para entender codigo e investigar conceptos.</p>
             </>}

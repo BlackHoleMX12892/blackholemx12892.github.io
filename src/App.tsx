@@ -142,14 +142,20 @@ function Home() {
             <>
               <p style={{marginBottom: "10px"}}>Currently I create things with the purpose of learning, for example:</p>
               <ul style={{marginBottom: "10px", '--list-color': `${theme == "light" ? "black" : "white"}`} as React.CSSProperties}>
-                <li>ishell: a shell project for unix to learn c++.</li>
+                <li>ishell: a shell project for unix-like systems to learn C++.</li>
                 <li>tripblueprint: a macOS swiftUI trip planning app.</li>
                 <li>This website to learn React.</li>
               </ul>
               <p>Do I use AI? Not really, just sometimes to understand some code and to get information.</p>
             </> :
             <>
-            
+              <p style={{marginBottom: "10px"}}>Actualmente creo proyetcos para aprender, como:</p>
+              <ul style={{marginBottom: "10px", '--list-color': `${theme == "light" ? "black" : "white"}`} as React.CSSProperties}>
+                <li>ishell: un interprete de comandos en C++ para sistemas tipo unix.</li>
+                <li>tripblueprint: una app de viajes para macOS hehco con swiftUI.</li>
+                <li>Este sitio para aprender React.</li>
+              </ul>
+              <p>Utilizo IA en mis proyectos? Sí, para entender codigo e investigar conceptos.</p>
             </>}
             <div className="home-card-buttons">
               <a href="https://github.com/BlackHoleMX12892"><SiGithub /> <span>Github</span></a>

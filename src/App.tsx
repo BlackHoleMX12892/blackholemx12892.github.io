@@ -159,7 +159,7 @@ function Home() {
               <ul style={{marginBottom: "10px", '--list-color': `${theme == "light" ? "black" : "white"}`} as React.CSSProperties}>
                 <li>ishell: un interprete de comandos en C++ para sistemas tipo unix.</li>
                 <li>tripblueprint: una app de viajes para macOS hecho con swiftUI.</li>
-                <li>Esté sitio para aprender React.</li>
+                <li>Este sitio para aprender React.</li>
               </ul>
               <p>Utilizo IA en mis proyectos? Sí, para entender codigo e investigar conceptos.</p>
             </>}
@@ -169,8 +169,6 @@ function Home() {
             </div>
           </div>
         </div>
-        <img style={{marginLeft: "20px"}} src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fblackholemx12892.github.io%2F&label=Visits&icon=broadcast&color=%23dc3545&message=&style=for-the-badge&tz=UTC
-" alt="visit-counter" />
       </div>
       <Footer />
     </>

@@ -178,17 +178,60 @@ function Home() {
 function About() {
   return (
     <>
-      About
+      <div className="introduction">
+        Hi there
+      </div>
       <Footer />
     </>
   )
 }
 
+class Project {
+  name: string
+  languages: Array<string>
+  description: string
+  url: string
+  image: string
+
+  constructor(name: string, languages: Array<string>, description: string, url: string, image: string) {
+      this.name = name
+      this.languages = languages
+      this.description = description
+      this.url = url
+      this.image = image
+  }
+}
+
 function Projects() {
+  const projects = [
+    new Project("ishell", ["C++", "CMake"], "A unix shell.", "https://github.com/BlackHoleMX12892/ishell", "https://github.com/BlackHoleMX12892/ishell/raw/main/.github/assets/ishell-v0.4.0.png"),
+    new Project("tripblueprint", ["swift"], "A trip planning app.", "https://github.com/BlackHoleMX12892/tripblueprint", "https://github.com/BlackHoleMX12892/ishell/raw/main/.github/assets/ishell-v0.4.0.png"),
+  ]
+
   return (
     <>
-      Projects
+    <div className="projects-container">
+      {
+        projects.map((element) => (
+          <ProjectsCard name={element.name} languages={element.languages} description={element.description} url={element.url} image={element.image} />
+        ))
+      }
+    </div>
       <Footer />
+    </>
+  )
+}
+
+function ProjectsCard({name, languages, description, url, image}: {name: string, languages: Array<string>, description: string, url: string, image: string}) {
+  return (
+    <>
+      <div className="projects-card">
+        <img src={image} alt="" />
+        <h1>{name}</h1>
+        <p>{description}</p>
+        <span>{languages}</span>
+        <a href={url}>repo</a>
+      </div>
     </>
   )
 }

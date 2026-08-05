@@ -339,3 +339,18 @@
     background-color: rgb(40, 40, 40);
     box-shadow: 2px 8px 16px -2px rgba(255, 226, 141, 0.15);
 }
+
+/* Projects style */
+.projects-container {
+    display: flex;
+    margin: 10px;
+}
+
+.projects-card {
+    width: 200px;
+    height: 500px;
+}
+
+.projects-card img {
+    width: 100%;
+}

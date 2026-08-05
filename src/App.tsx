@@ -9,6 +9,9 @@ import JavaScriptLogo from "./assets/Unofficial_JavaScript_logo_2.svg.webp"
 import TuxPenguin from "./assets/Tux.svg.webp"
 import CPPLogo from "./assets/ISO_C++_Logo.svg.webp"
 
+import TripBlueprintScreenshot from "./assets/projects-screenshots/Trip_Blueprint.png"
+import ishellScreenshot from "./assets/projects-screenshots/ishell-v0.4.0.png"
+
 const ThemeContext = createContext("light")
 
 interface PageContextType {
@@ -198,8 +201,8 @@ class Project {
 
 function Projects() {
   const projects = [
-    new Project("ishell", new Map([["language", "C++"], ["color", "rgb(26, 67, 126)"]]), "A unix shell.", "https://github.com/BlackHoleMX12892/ishell", "https://github.com/BlackHoleMX12892/ishell/raw/main/.github/assets/ishell-v0.4.0.png"),
-    new Project("Trip Blueprint", new Map([["language", "Swift"], ["color", "rgb(222, 93, 68)"]]), "A trip planning app for macos.", "https://github.com/BlackHoleMX12892/tripblueprint", "https://github.com/BlackHoleMX12892/ishell/raw/main/.github/assets/ishell-v0.4.0.png"),
+    new Project("ishell", new Map([["language", "C++"], ["color", "rgb(26, 67, 126)"]]), "A unix shell for TOML.", "https://github.com/BlackHoleMX12892/ishell", ishellScreenshot),
+    new Project("Trip Blueprint", new Map([["language", "Swift"], ["color", "rgb(222, 93, 68)"]]), "A trip planning app for macos.", "https://github.com/BlackHoleMX12892/tripblueprint", TripBlueprintScreenshot),
   ]
 
   return (

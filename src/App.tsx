@@ -17,6 +17,7 @@ const ThemeContext = createContext("light")
 interface PageContextType {
   page: string
   setPage: React.Dispatch<React.SetStateAction<string>>
+  changePage: (page: string) => void
 }
 
 const PageContext = createContext<PageContextType | undefined>(undefined)
@@ -28,8 +29,10 @@ export default function App() {
   
   const initiallanguage = localStorage.getItem("language") || (navigator.language.slice(0, 2) == "es" || navigator.language.slice(0, 2) == "en" ? navigator.language.slice(0, 2) : "en")
 
+const initialpage = localStorage.getItem("page") || "home"
+
   const [theme, setTheme] = useState(initialtheme)
-  const [page, setPage] = useState("home")
+  const [page, setPage] = useState(initialpage)
   const [language, setLanguage] = useState(initiallanguage)
   const [showSidebar, setShowSidebar] = useState(false)
 
@@ -38,9 +41,15 @@ export default function App() {
     localStorage.setItem("language", lang)
   }
 
+  function changePage(page: string) {
+    setPage(page)
+    setShowSidebar(false)
+    localStorage.setItem("page", page)
+  }
+
   return (
     <ThemeContext.Provider value={theme}>
-    <PageContext.Provider value={{ page, setPage }}>
+    <PageContext.Provider value={{ page, setPage, changePage }}>
     <LanguageContext.Provider value={language}>
     <div className={`main-container ${theme == "light" ? "main-container-light" : "main-container-dark"}`}>
       <nav className={`navigation-bar ${theme == "light" ? "navigation-bar-light" : "navigation-bar-dark"}`}>
@@ -48,19 +57,19 @@ export default function App() {
           <Menu />
         </div>
         <div className={`navigation-bar-item ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} style={{backgroundImage: `url(${profilepicture})`, backgroundSize: "cover", width: "19px", height: "19px", minWidth: "19px", minHeight: "19px", maxWidth: "19px", maxHeight: "19px", cursor: "default"}} />
-        <div className={`navigation-bar-item navigation-bar-button ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => setPage("home")}>
+        <div className={`navigation-bar-item navigation-bar-button ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => changePage("home")}>
           <p>{language == "en" ? "Home" : "Inicio"}</p>
         </div>
-        <div className={`navigation-bar-item navigation-bar-button ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => setPage("about")}>
+        <div className={`navigation-bar-item navigation-bar-button ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => changePage("about")}>
           <p>{language == "en" ? "About" : "Información"}</p>
         </div>
-        <div className={`navigation-bar-item navigation-bar-button ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => setPage("projects")}>
+        <div className={`navigation-bar-item navigation-bar-button ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => changePage("projects")}>
           <p>{language == "en" ? "Projects" : "Proyectos"}</p>
         </div>
-        <div className={`navigation-bar-item navigation-bar-button ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => setPage("contact")}>
+        <div className={`navigation-bar-item navigation-bar-button ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => changePage("contact")}>
           <p>{language == "en" ? "Contact" : "Contacto"}</p>
         </div>
-        <div className={`navigation-bar-item navigation-bar-button ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => setPage("privacy")}>
+        <div className={`navigation-bar-item navigation-bar-button ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => changePage("privacy")}>
           <p>{language == "en" ? "Privacy" : "Privacidad"}</p>
         </div>
         <div className="navigation-bar-switcher" onClick={() => language == "en" ? changeLang("es") : changeLang("en")} style={{marginLeft: "auto", marginRight: "15px", marginTop: "8px", display: "flex", flexDirection: "row", alignItems: "center", cursor: "default"}}>
@@ -80,11 +89,11 @@ export default function App() {
       </main>
       <aside className={`sidebar ${theme == "light" ? "sidebar-light" : "sidebar-dark"}`} style={showSidebar == true ? {display: "flex"} : {display: "none"}}>
         <ul>
-          <li onClick={() => {setPage("home"); setShowSidebar(false)}}><House /> <span>{language == "en" ? "Home" : "Inicio"}</span></li>
-          <li onClick={() => {setPage("about"); setShowSidebar(false)}}><BadgeInfo /> <span>{language == "en" ? "About" : "Información"}</span></li>
-          <li onClick={() => {setPage("projects"); setShowSidebar(false)}}><Boxes /> <span>{language == "en" ? "Projects" : "Proyectos"}</span></li>
-          <li onClick={() => {setPage("contact"); setShowSidebar(false)}}><Mail /> <span>{language == "en" ? "Contact" : "Contacto"}</span></li>
-          <li onClick={() => {setPage("privacy"); setShowSidebar(false)}}><ShieldUser /> <span>{language == "en" ? "Privacy" : "Privacidad"}</span></li>
+          <li onClick={() => {changePage("home")}}><House /> <span>{language == "en" ? "Home" : "Inicio"}</span></li>
+          <li onClick={() => {changePage("about")}}><BadgeInfo /> <span>{language == "en" ? "About" : "Información"}</span></li>
+          <li onClick={() => {changePage("projects");}}><Boxes /> <span>{language == "en" ? "Projects" : "Proyectos"}</span></li>
+          <li onClick={() => {changePage("contact");}}><Mail /> <span>{language == "en" ? "Contact" : "Contacto"}</span></li>
+          <li onClick={() => {changePage("privacy");}}><ShieldUser /> <span>{language == "en" ? "Privacy" : "Privacidad"}</span></li>
         </ul>
       </aside>
     </div>
@@ -111,7 +120,7 @@ function Home() {
         <h1 data-text={language == "en" ? "Hover me" : "Pasa el mouse aquí"}>BlackHoleMX</h1>
         <div className="home-banner-buttons">
           <a href="https://github.com/BlackHoleMX12892"><SiGithub /> <span>{language == "en" ? "My projects" : "Mis proyectos"}</span></a>
-          <div onClick={() => page?.setPage("contact")}><Mail /> <span>{language == "en" ? "Contact" : "Contacto"}</span></div>
+          <div onClick={() => page?.changePage("contact")}><Mail /> <span>{language == "en" ? "Contact" : "Contacto"}</span></div>
         </div>
       </div>
       <div className="home-main">
@@ -134,7 +143,7 @@ function Home() {
               <p>Dato extra: Me gusta visitar Estados Unidos y el BBQ.</p>
             </>}
             <div className="home-card-buttons">
-              <div onClick={() => page?.setPage("about")}><BadgeInfo /> <span>{language == "en" ? "Read more" : "Leer más"}</span></div>
+              <div onClick={() => page?.changePage("about")}><BadgeInfo /> <span>{language == "en" ? "Read more" : "Leer más"}</span></div>
             </div>
           </div>
         </div>
@@ -162,7 +171,7 @@ function Home() {
             </>}
             <div className="home-card-buttons">
               <a href="https://github.com/BlackHoleMX12892"><SiGithub /> <span>Github</span></a>
-              <div onClick={() => page?.setPage("projects")}><Boxes /> <span>{language == "en" ? "Projects" : "Proyectos"}</span></div>
+              <div onClick={() => page?.changePage("projects")}><Boxes /> <span>{language == "en" ? "Projects" : "Proyectos"}</span></div>
             </div>
           </div>
         </div>

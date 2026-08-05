@@ -198,8 +198,8 @@ class Project {
 
 function Projects() {
   const projects = [
-    new Project("ishell", ["C++", "CMake"], "A unix shell.", "https://github.com/BlackHoleMX12892/ishell", "https://github.com/BlackHoleMX12892/ishell/raw/main/.github/assets/ishell-v0.4.0.png"),
-    new Project("tripblueprint", ["swift"], "A trip planning app.", "https://github.com/BlackHoleMX12892/tripblueprint", "https://github.com/BlackHoleMX12892/ishell/raw/main/.github/assets/ishell-v0.4.0.png"),
+    new Project("ishell", ["C++"], "A unix shell.", "https://github.com/BlackHoleMX12892/ishell", "https://github.com/BlackHoleMX12892/ishell/raw/main/.github/assets/ishell-v0.4.0.png"),
+    new Project("tripblueprint", ["Swift"], "A trip planning app.", "https://github.com/BlackHoleMX12892/tripblueprint", "https://github.com/BlackHoleMX12892/ishell/raw/main/.github/assets/ishell-v0.4.0.png"),
   ]
 
   return (
@@ -225,6 +225,11 @@ function ProjectCard({name, languages, description, url, image}: {name: string, 
         <div className="project-card-content" style={{marginLeft: "10px", marginTop: "10px"}}>
           <h1>{name}</h1>
           <p>{description}</p>
+          {
+            languages.map((language) => (
+              <p>{language}</p>
+            ))
+          }
           <div className="project-card-buttons">
             <a href={url}><SiGithub /> <span>Github</span></a>
           </div>

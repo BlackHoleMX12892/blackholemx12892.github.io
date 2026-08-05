@@ -343,14 +343,49 @@
 /* Projects style */
 .projects-container {
     display: flex;
+    flex-wrap: wrap;
     margin: 10px;
 }
 
-.projects-card {
-    width: 200px;
-    height: 500px;
+.project-card {
+    width: 300px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(235, 235, 235);
+    box-shadow: 2px 8px 16px -2px rgba(0, 0, 0, 0.3);
+    margin: 20px;
+    border-radius: 5px;
 }
 
-.projects-card img {
+.project-card-image {
     width: 100%;
+    height: 40%;
+    border-radius: 5px 5px 0 0;
+}
+
+.project-card-buttons {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.project-card-buttons div, .project-card-buttons a {
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: skyblue;
+    padding: 15px;
+    margin-right: 20px;
+    cursor: pointer;
+    transition: background-color 300ms ease-in;
+}
+
+.project-card-buttons div:hover, .project-card-buttons a:hover {
+    background-color: royalblue;
+}
+
+.project-card-buttons span {
+    margin-left: 8px;
 }

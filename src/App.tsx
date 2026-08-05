@@ -9,7 +9,6 @@ import JavaScriptLogo from "./assets/Unofficial_JavaScript_logo_2.svg.webp"
 import TuxPenguin from "./assets/Tux.svg.webp"
 import CPPLogo from "./assets/ISO_C++_Logo.svg.webp"
 
-
 const ThemeContext = createContext("light")
 
 interface PageContextType {
@@ -22,13 +21,8 @@ const PageContext = createContext<PageContextType | undefined>(undefined)
 const LanguageContext = createContext("en")
 
 export default function App() {
-  const initialtheme = () => {
-    if (window.matchMedia("(prefers-color-scheme: dark)")) {
-      return "dark"
-    } else {
-      return new Date().getHours() < 19 && new Date().getHours() > 6 ? "light" : "dark"
-    }
-  }
+  const initialtheme = new Date().getHours() < 19 && new Date().getHours() > 6 ? "light" : "dark"
+  
   const initiallanguage = localStorage.getItem("language") || (navigator.language.slice(0, 2) == "es" || navigator.language.slice(0, 2) == "en" ? navigator.language.slice(0, 2) : "en")
 
   const [theme, setTheme] = useState(initialtheme)
@@ -210,10 +204,11 @@ function Projects() {
 
   return (
     <>
+    <h1 style={{margin: "30px 0 10px 20px"}}>My projects:</h1>
     <div className="projects-container">
       {
         projects.map((element) => (
-          <ProjectsCard name={element.name} languages={element.languages} description={element.description} url={element.url} image={element.image} />
+          <ProjectCard name={element.name} languages={element.languages} description={element.description} url={element.url} image={element.image} />
         ))
       }
     </div>
@@ -222,15 +217,18 @@ function Projects() {
   )
 }
 
-function ProjectsCard({name, languages, description, url, image}: {name: string, languages: Array<string>, description: string, url: string, image: string}) {
+function ProjectCard({name, languages, description, url, image}: {name: string, languages: Array<string>, description: string, url: string, image: string}) {
   return (
     <>
-      <div className="projects-card">
-        <img src={image} alt="" />
-        <h1>{name}</h1>
-        <p>{description}</p>
-        <span>{languages}</span>
-        <a href={url}>repo</a>
+      <div className="project-card">
+        <div className="project-card-image" style={{backgroundImage: `url(${image})`}} />
+        <div className="project-card-content" style={{marginLeft: "10px", marginTop: "10px"}}>
+          <h1>{name}</h1>
+          <p>{description}</p>
+          <div className="project-card-buttons">
+            <a href={url}><SiGithub /> <span>Github</span></a>
+          </div>
+        </div>
       </div>
     </>
   )

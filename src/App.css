@@ -349,7 +349,7 @@
 
 .project-card {
     width: 300px;
-    height: 250px;
+    height: 300px;
     display: flex;
     flex-direction: column;
     background-color: rgb(235, 235, 235);

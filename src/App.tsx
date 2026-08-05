@@ -1,7 +1,7 @@
 import './App.css'
 import { useState, createContext, useContext } from 'react'
 import profilepicture from './assets/149122895.jpeg'
-import { Mail, Sun, Moon, BadgeInfo, Languages, Menu, House, Boxes, ShieldUser } from 'lucide-react'
+import { Mail, Sun, Moon, BadgeInfo, Languages, Menu, House, Boxes, ShieldUser, Download } from 'lucide-react'
 import { SiGithub } from '@icons-pack/react-simple-icons'
 
 import SwfitLogo from "./assets/Swift_logo_color.svg"
@@ -231,6 +231,7 @@ function ProjectCard({name, languages, description, url, image}: {name: string, 
           <p className="project-card-language" style={{'--language-color': `${languages.get("color")}`} as React.CSSProperties}>{languages.get("language")}</p>
           <div className="project-card-buttons">
             <a href={url}><SiGithub /> <span>Github</span></a>
+            <a href="https://github.com/BlackHoleMX12892/ishell/releases/tag/v0.3.2" style={name == "ishell" ? {display: ""} : {display: "none"}}><Download /> <span>Download</span></a>
           </div>
         </div>
       </div>

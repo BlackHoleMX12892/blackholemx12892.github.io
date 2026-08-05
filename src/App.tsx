@@ -182,12 +182,12 @@ function About() {
 
 class Project {
   name: string
-  languages: Array<string>
+  languages: Map<string, string>
   description: string
   url: string
   image: string
 
-  constructor(name: string, languages: Array<string>, description: string, url: string, image: string) {
+  constructor(name: string, languages: Map<string, string>, description: string, url: string, image: string) {
       this.name = name
       this.languages = languages
       this.description = description
@@ -198,8 +198,8 @@ class Project {
 
 function Projects() {
   const projects = [
-    new Project("ishell", ["C++"], "A unix shell.", "https://github.com/BlackHoleMX12892/ishell", "https://github.com/BlackHoleMX12892/ishell/raw/main/.github/assets/ishell-v0.4.0.png"),
-    new Project("tripblueprint", ["Swift"], "A trip planning app.", "https://github.com/BlackHoleMX12892/tripblueprint", "https://github.com/BlackHoleMX12892/ishell/raw/main/.github/assets/ishell-v0.4.0.png"),
+    new Project("ishell", new Map([["language", "C++"], ["color", "rgb(26, 67, 126)"]]), "A unix shell.", "https://github.com/BlackHoleMX12892/ishell", "https://github.com/BlackHoleMX12892/ishell/raw/main/.github/assets/ishell-v0.4.0.png"),
+    new Project("Trip Blueprint", new Map([["language", "Swift"], ["color", "rgb(222, 93, 68)"]]), "A trip planning app for macos.", "https://github.com/BlackHoleMX12892/tripblueprint", "https://github.com/BlackHoleMX12892/ishell/raw/main/.github/assets/ishell-v0.4.0.png"),
   ]
 
   return (
@@ -217,7 +217,7 @@ function Projects() {
   )
 }
 
-function ProjectCard({name, languages, description, url, image}: {name: string, languages: Array<string>, description: string, url: string, image: string}) {
+function ProjectCard({name, languages, description, url, image}: {name: string, languages: Map<string, string>, description: string, url: string, image: string}) {
   return (
     <>
       <div className="project-card">
@@ -225,11 +225,7 @@ function ProjectCard({name, languages, description, url, image}: {name: string, 
         <div className="project-card-content" style={{marginLeft: "10px", marginTop: "10px"}}>
           <h1>{name}</h1>
           <p>{description}</p>
-          {
-            languages.map((language) => (
-              <p>{language}</p>
-            ))
-          }
+          <p className="project-card-language" style={{'--language-color': `${languages.get("color")}`} as React.CSSProperties}>{languages.get("language")}</p>
           <div className="project-card-buttons">
             <a href={url}><SiGithub /> <span>Github</span></a>
           </div>

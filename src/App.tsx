@@ -243,11 +243,13 @@ function ProjectCard({name, languages, description, url, image}: {name: string, 
         <div className="project-card-content" style={{marginLeft: "10px", marginTop: "10px"}}>
           <h1>{name}</h1>
           <p>{language == "en" ? description.get("en") : description.get("es")}</p>
-          {
-            languages.map(lang => (
-              <p className="project-card-language" style={{'--language-color': `${lang.get("color")}`} as React.CSSProperties}>{lang.get("language")}</p>
-            ))
-          }
+          <div className="project-card-language-container">
+            {
+              languages.map(lang => (
+                <p className="project-card-language" style={{'--language-color': `${lang.get("color")}`} as React.CSSProperties}>{lang.get("language")}</p>
+              ))
+            }
+          </div>
           <div className="project-card-buttons">
             <a href={url}><SiGithub /> <span>Github</span></a>
             <a href="https://github.com/BlackHoleMX12892/ishell/releases/tag/v0.3.2" style={name == "ishell" ? {display: ""} : {display: "none"}}><Download /> <span>Download</span></a>

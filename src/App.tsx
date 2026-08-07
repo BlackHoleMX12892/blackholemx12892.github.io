@@ -17,7 +17,7 @@ const ThemeContext = createContext("light")
 interface PageContextType {
   page: string
   setPage: React.Dispatch<React.SetStateAction<string>>
-  changePage: (page: string) => void
+  changePage: (page: string, hideSidebar?: boolean) => void
 }
 
 const PageContext = createContext<PageContextType | undefined>(undefined)
@@ -41,9 +41,11 @@ const initialpage = localStorage.getItem("page") || "home"
     localStorage.setItem("language", lang)
   }
 
-  function changePage(page: string) {
+  function changePage(page: string, hideSidebar?: boolean) {
     setPage(page)
-    setShowSidebar(false)
+    if (typeof hideSidebar == "boolean") {
+      setShowSidebar(!(hideSidebar))
+    }
     localStorage.setItem("page", page)
   }
 
@@ -57,19 +59,19 @@ const initialpage = localStorage.getItem("page") || "home"
           <Menu />
         </div>
         <div className={`navigation-bar-item ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} style={{backgroundImage: `url(${profilepicture})`, backgroundSize: "cover", width: "19px", height: "19px", minWidth: "19px", minHeight: "19px", maxWidth: "19px", maxHeight: "19px", cursor: "default"}} />
-        <div className={`navigation-bar-item navigation-bar-button ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => changePage("home")}>
+        <div className={`navigation-bar-item navigation-bar-button ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => changePage("home", true)}>
           <p>{language == "en" ? "Home" : "Inicio"}</p>
         </div>
-        <div className={`navigation-bar-item navigation-bar-button ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => changePage("about")}>
+        <div className={`navigation-bar-item navigation-bar-button ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => changePage("about", true)}>
           <p>{language == "en" ? "About" : "Información"}</p>
         </div>
-        <div className={`navigation-bar-item navigation-bar-button ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => changePage("projects")}>
+        <div className={`navigation-bar-item navigation-bar-button ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => changePage("projects", true)}>
           <p>{language == "en" ? "Projects" : "Proyectos"}</p>
         </div>
-        <div className={`navigation-bar-item navigation-bar-button ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => changePage("contact")}>
+        <div className={`navigation-bar-item navigation-bar-button ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => changePage("contact", true)}>
           <p>{language == "en" ? "Contact" : "Contacto"}</p>
         </div>
-        <div className={`navigation-bar-item navigation-bar-button ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => changePage("privacy")}>
+        <div className={`navigation-bar-item navigation-bar-button ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => changePage("privacy", true)}>
           <p>{language == "en" ? "Privacy" : "Privacidad"}</p>
         </div>
         <div className="navigation-bar-switcher" onClick={() => language == "en" ? changeLang("es") : changeLang("en")} style={{marginLeft: "auto", marginRight: "15px", marginTop: "8px", display: "flex", flexDirection: "row", alignItems: "center", cursor: "default"}}>
@@ -89,11 +91,11 @@ const initialpage = localStorage.getItem("page") || "home"
       </main>
       <aside className={`sidebar ${theme == "light" ? "sidebar-light" : "sidebar-dark"}`} style={showSidebar == true ? {display: "flex"} : {display: "none"}}>
         <ul>
-          <li onClick={() => {changePage("home")}}><House /> <span>{language == "en" ? "Home" : "Inicio"}</span></li>
-          <li onClick={() => {changePage("about")}}><BadgeInfo /> <span>{language == "en" ? "About" : "Información"}</span></li>
-          <li onClick={() => {changePage("projects");}}><Boxes /> <span>{language == "en" ? "Projects" : "Proyectos"}</span></li>
-          <li onClick={() => {changePage("contact");}}><Mail /> <span>{language == "en" ? "Contact" : "Contacto"}</span></li>
-          <li onClick={() => {changePage("privacy");}}><ShieldUser /> <span>{language == "en" ? "Privacy" : "Privacidad"}</span></li>
+          <li onClick={() => {changePage("home", true)}}><House /> <span>{language == "en" ? "Home" : "Inicio"}</span></li>
+          <li onClick={() => {changePage("about", true)}}><BadgeInfo /> <span>{language == "en" ? "About" : "Información"}</span></li>
+          <li onClick={() => {changePage("projects", true);}}><Boxes /> <span>{language == "en" ? "Projects" : "Proyectos"}</span></li>
+          <li onClick={() => {changePage("contact", true);}}><Mail /> <span>{language == "en" ? "Contact" : "Contacto"}</span></li>
+          <li onClick={() => {changePage("privacy", true);}}><ShieldUser /> <span>{language == "en" ? "Privacy" : "Privacidad"}</span></li>
         </ul>
       </aside>
     </div>
@@ -195,11 +197,11 @@ function About() {
 class Project {
   name: string
   languages: Map<string, string>
-  description: string
+  description: Map<string, string>
   url: string
   image: string
 
-  constructor(name: string, languages: Map<string, string>, description: string, url: string, image: string) {
+  constructor(name: string, languages: Map<string, string>, description: Map<string, string>, url: string, image: string) {
       this.name = name
       this.languages = languages
       this.description = description
@@ -210,8 +212,9 @@ class Project {
 
 function Projects() {
   const projects = [
-    new Project("ishell", new Map([["language", "C++"], ["color", "rgb(26, 67, 126)"]]), "A unix shell for TOML.", "https://github.com/BlackHoleMX12892/ishell", ishellScreenshot),
-    new Project("Trip Blueprint", new Map([["language", "Swift"], ["color", "rgb(222, 93, 68)"]]), "A trip planning app for macos.", "https://github.com/BlackHoleMX12892/tripblueprint", TripBlueprintScreenshot),
+    new Project("ishell", new Map([["language", "C++"], ["color", "rgb(26, 67, 126)"]]), new Map([["en", "A Unix shell for TOML."], ["es", "Una shell de Unix para TOML."]]), "https://github.com/BlackHoleMX12892/ishell", ishellScreenshot),
+    new Project("Trip Blueprint", new Map([["language", "Swift"], ["color", "rgb(222, 93, 68)"]]), new Map([["en", "A trip planning app for macOS."], ["es", "App de macOS para planear viajes."]]), "https://github.com/BlackHoleMX12892/tripblueprint", TripBlueprintScreenshot),
+    new Project("Hello World", new Map([["language", "C"], ["color", "rgba(172, 186, 203)"]]), new Map([["en", "A program that reads a binary file and prints \"Hello World!\""], ["es", "Un programa que lee un binario e imprime \"Hello World!\""]]), "https://github.com/BlackHoleMX12892/hello-world", "https://github.com/BlackHoleMX12892/hello-world/blob/main/.github/assets/image.png?raw=true")
   ]
 
   return (
@@ -229,14 +232,17 @@ function Projects() {
   )
 }
 
-function ProjectCard({name, languages, description, url, image}: {name: string, languages: Map<string, string>, description: string, url: string, image: string}) {
+function ProjectCard({name, languages, description, url, image}: {name: string, languages: Map<string, string>, description: Map<string, string>, url: string, image: string}) {
+  const language = useContext(LanguageContext)
+  const theme = useContext(ThemeContext)
+
   return (
     <>
-      <div className="project-card">
+      <div className={`project-card ${theme == "light" ? "project-card-light" : "project-card-dark"}`}>
         <div className="project-card-image" style={{backgroundImage: `url(${image})`}} />
         <div className="project-card-content" style={{marginLeft: "10px", marginTop: "10px"}}>
           <h1>{name}</h1>
-          <p>{description}</p>
+          <p>{language == "en" ? description.get("en") : description.get("es")}</p>
           <p className="project-card-language" style={{'--language-color': `${languages.get("color")}`} as React.CSSProperties}>{languages.get("language")}</p>
           <div className="project-card-buttons">
             <a href={url}><SiGithub /> <span>Github</span></a>

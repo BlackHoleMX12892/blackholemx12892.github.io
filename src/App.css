@@ -345,6 +345,7 @@
     display: flex;
     flex-wrap: wrap;
     margin: 10px;
+    min-height: calc(100vh - 79px);
 }
 
 .project-card {
@@ -352,10 +353,18 @@
     height: 300px;
     display: flex;
     flex-direction: column;
-    background-color: rgb(235, 235, 235);
-    box-shadow: 2px 8px 16px -2px rgba(0, 0, 0, 0.3);
     margin: 20px;
     border-radius: 5px;
+}
+
+.project-card-light {
+    background-color: rgb(235, 235, 235);
+    box-shadow: 2px 8px 16px -2px rgba(0, 0, 0, 0.3);
+}
+
+.project-card-dark {
+    background-color: rgb(40, 40, 40);
+    box-shadow: 2px 8px 16px -2px rgba(255, 226, 141, 0.15);
 }
 
 .project-card-image {

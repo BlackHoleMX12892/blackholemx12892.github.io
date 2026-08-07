@@ -1,5 +1,5 @@
 import './App.css'
-import { useState, createContext, useContext } from 'react'
+import React, { useState, createContext, useContext } from 'react'
 import profilepicture from './assets/149122895.jpeg'
 import { Mail, Sun, Moon, BadgeInfo, Languages, Menu, House, Boxes, ShieldUser, Download } from 'lucide-react'
 import { SiGithub } from '@icons-pack/react-simple-icons'
@@ -194,27 +194,41 @@ function About() {
   )
 }
 
+class ButtonData {
+  icon: React.JSX.Element
+  label: string
+  action?: () => void
+  url?: string
+
+  constructor(icon: React.JSX.Element, label: string, action?: () => void, url?: string) {
+    this.icon = icon
+    this.label = label
+    this.action = action
+    this.url = url
+  }
+}
+
 class Project {
   name: string
   languages: Array<Map<string, string>>
   description: Map<string, string>
-  url: string
+  buttons: Array<ButtonData>
   image: string
 
-  constructor(name: string, languages: Array<Map<string, string>>, description: Map<string, string>, url: string, image: string) {
+  constructor(name: string, languages: Array<Map<string, string>>, description: Map<string, string>, buttons: Array<ButtonData>, image: string) {
       this.name = name
       this.languages = languages
       this.description = description
-      this.url = url
+      this.buttons = buttons
       this.image = image
   }
 }
 
 function Projects() {
   const projects = [
-    new Project("ishell", [new Map([["language", "C++"], ["color", "rgb(26, 67, 126)"]])], new Map([["en", "A Unix shell for TOML."], ["es", "Una shell de Unix para TOML."]]), "https://github.com/BlackHoleMX12892/ishell", ishellScreenshot),
-    new Project("Trip Blueprint", [new Map([["language", "Swift"], ["color", "rgb(222, 93, 68)"]])], new Map([["en", "A trip planning app for macOS."], ["es", "App de macOS para planear viajes."]]), "https://github.com/BlackHoleMX12892/tripblueprint", TripBlueprintScreenshot),
-    new Project("Hello World", [new Map([["language", "C"], ["color", "rgba(172, 186, 203)"]]), new Map([["language", "C++"], ["color", "rgb(26, 67, 126)"]])], new Map([["en", "A program that reads a binary file and prints \"Hello World!\""], ["es", "Un programa que lee un binario e imprime \"Hello World!\""]]), "https://github.com/BlackHoleMX12892/hello-world", "https://github.com/BlackHoleMX12892/hello-world/blob/main/.github/assets/image.png?raw=true")
+    new Project("ishell", [new Map([["language", "C++"], ["color", "rgb(26, 67, 126)"]])], new Map([["en", "A Unix shell for TOML."], ["es", "Una shell de Unix para TOML."]]), [new ButtonData(<SiGithub />, "Github", undefined, "https://github.com/BlackHoleMX12892/ishell"), new ButtonData(<Download />, "Download", () => {})], ishellScreenshot),
+    new Project("Trip Blueprint", [new Map([["language", "Swift"], ["color", "rgb(222, 93, 68)"]])], new Map([["en", "A trip planning app for macOS."], ["es", "App de macOS para planear viajes."]]), [new ButtonData(<SiGithub />, "Github", undefined, "https://github.com/BlackHoleMX12892/tripblueprint")], TripBlueprintScreenshot),
+    new Project("Hello World", [new Map([["language", "C"], ["color", "rgba(172, 186, 203)"]]), new Map([["language", "C++"], ["color", "rgb(26, 67, 126)"]])], new Map([["en", "A program that reads a binary file and prints \"Hello World!\""], ["es", "Un programa que lee un binario e imprime \"Hello World!\""]]), [new ButtonData(<SiGithub />, "Github", undefined, "https://github.com/BlackHoleMX12892/hello-world")], "https://github.com/BlackHoleMX12892/hello-world/blob/main/.github/assets/image.png?raw=true")
   ]
 
   return (
@@ -222,8 +236,8 @@ function Projects() {
     <h1 style={{margin: "30px 0 10px 20px"}}>My projects:</h1>
     <div className="projects-container">
       {
-        projects.map((element) => (
-          <ProjectCard name={element.name} languages={element.languages} description={element.description} url={element.url} image={element.image} />
+        projects.map(element => (
+          <ProjectCard name={element.name} languages={element.languages} description={element.description} buttons={element.buttons} image={element.image} />
         ))
       }
     </div>
@@ -232,7 +246,7 @@ function Projects() {
   )
 }
 
-function ProjectCard({name, languages, description, url, image}: {name: string, languages: Array<Map<string, string>>, description: Map<string, string>, url: string, image: string}) {
+function ProjectCard({name, languages, description, buttons, image}: {name: string, languages: Array<Map<string, string>>, description: Map<string, string>, buttons: Array<ButtonData>, image: string}) {
   const language = useContext(LanguageContext)
   const theme = useContext(ThemeContext)
 
@@ -251,8 +265,15 @@ function ProjectCard({name, languages, description, url, image}: {name: string, 
             }
           </div>
           <div className="project-card-buttons">
-            <a href={url}><SiGithub /> <span>Github</span></a>
-            <a href="https://github.com/BlackHoleMX12892/ishell/releases/tag/v0.3.2" style={name == "ishell" ? {display: ""} : {display: "none"}}><Download /> <span>Download</span></a>
+            {
+              buttons.map(data => {
+                  if (typeof data.action == "undefined" && typeof data.url == "string") {
+                    return(<a href={data.url}>{data.icon} <span>{data.label}</span></a>)
+                  } else if (typeof data.action == "function" && typeof data.url == "undefined") {
+                    return(<div onClick={data.action}>{data.icon} <span>{data.label}</span></div>)
+                  }
+              })
+            }
           </div>
         </div>
       </div>

@@ -196,12 +196,12 @@ function About() {
 
 class Project {
   name: string
-  languages: Map<string, string>
+  languages: Array<Map<string, string>>
   description: Map<string, string>
   url: string
   image: string
 
-  constructor(name: string, languages: Map<string, string>, description: Map<string, string>, url: string, image: string) {
+  constructor(name: string, languages: Array<Map<string, string>>, description: Map<string, string>, url: string, image: string) {
       this.name = name
       this.languages = languages
       this.description = description
@@ -212,9 +212,9 @@ class Project {
 
 function Projects() {
   const projects = [
-    new Project("ishell", new Map([["language", "C++"], ["color", "rgb(26, 67, 126)"]]), new Map([["en", "A Unix shell for TOML."], ["es", "Una shell de Unix para TOML."]]), "https://github.com/BlackHoleMX12892/ishell", ishellScreenshot),
-    new Project("Trip Blueprint", new Map([["language", "Swift"], ["color", "rgb(222, 93, 68)"]]), new Map([["en", "A trip planning app for macOS."], ["es", "App de macOS para planear viajes."]]), "https://github.com/BlackHoleMX12892/tripblueprint", TripBlueprintScreenshot),
-    new Project("Hello World", new Map([["language", "C"], ["color", "rgba(172, 186, 203)"]]), new Map([["en", "A program that reads a binary file and prints \"Hello World!\""], ["es", "Un programa que lee un binario e imprime \"Hello World!\""]]), "https://github.com/BlackHoleMX12892/hello-world", "https://github.com/BlackHoleMX12892/hello-world/blob/main/.github/assets/image.png?raw=true")
+    new Project("ishell", [new Map([["language", "C++"], ["color", "rgb(26, 67, 126)"]])], new Map([["en", "A Unix shell for TOML."], ["es", "Una shell de Unix para TOML."]]), "https://github.com/BlackHoleMX12892/ishell", ishellScreenshot),
+    new Project("Trip Blueprint", [new Map([["language", "Swift"], ["color", "rgb(222, 93, 68)"]])], new Map([["en", "A trip planning app for macOS."], ["es", "App de macOS para planear viajes."]]), "https://github.com/BlackHoleMX12892/tripblueprint", TripBlueprintScreenshot),
+    new Project("Hello World", [new Map([["language", "C"], ["color", "rgba(172, 186, 203)"]]), new Map([["language", "C++"], ["color", "rgb(26, 67, 126)"]])], new Map([["en", "A program that reads a binary file and prints \"Hello World!\""], ["es", "Un programa que lee un binario e imprime \"Hello World!\""]]), "https://github.com/BlackHoleMX12892/hello-world", "https://github.com/BlackHoleMX12892/hello-world/blob/main/.github/assets/image.png?raw=true")
   ]
 
   return (
@@ -232,7 +232,7 @@ function Projects() {
   )
 }
 
-function ProjectCard({name, languages, description, url, image}: {name: string, languages: Map<string, string>, description: Map<string, string>, url: string, image: string}) {
+function ProjectCard({name, languages, description, url, image}: {name: string, languages: Array<Map<string, string>>, description: Map<string, string>, url: string, image: string}) {
   const language = useContext(LanguageContext)
   const theme = useContext(ThemeContext)
 
@@ -243,7 +243,11 @@ function ProjectCard({name, languages, description, url, image}: {name: string, 
         <div className="project-card-content" style={{marginLeft: "10px", marginTop: "10px"}}>
           <h1>{name}</h1>
           <p>{language == "en" ? description.get("en") : description.get("es")}</p>
-          <p className="project-card-language" style={{'--language-color': `${languages.get("color")}`} as React.CSSProperties}>{languages.get("language")}</p>
+          {
+            languages.map(lang => (
+              <p className="project-card-language" style={{'--language-color': `${lang.get("color")}`} as React.CSSProperties}>{lang.get("language")}</p>
+            ))
+          }
           <div className="project-card-buttons">
             <a href={url}><SiGithub /> <span>Github</span></a>
             <a href="https://github.com/BlackHoleMX12892/ishell/releases/tag/v0.3.2" style={name == "ishell" ? {display: ""} : {display: "none"}}><Download /> <span>Download</span></a>

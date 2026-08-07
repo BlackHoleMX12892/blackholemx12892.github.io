@@ -11,6 +11,7 @@ import CPPLogo from "./assets/ISO_C++_Logo.svg.webp"
 
 import TripBlueprintScreenshot from "./assets/projects-screenshots/Trip_Blueprint.png"
 import ishellScreenshot from "./assets/projects-screenshots/ishell-v0.4.0.png"
+import Popup from './components/Popup'
 
 const ThemeContext = createContext("light")
 
@@ -197,12 +198,14 @@ function About() {
 class ButtonData {
   icon: React.JSX.Element
   label: string
+  key: string
   action?: () => void
   url?: string
 
-  constructor(icon: React.JSX.Element, label: string, action?: () => void, url?: string) {
+  constructor(icon: React.JSX.Element, label: string, key: string, action?: () => void, url?: string) {
     this.icon = icon
     this.label = label
+    this.key = key
     this.action = action
     this.url = url
   }
@@ -214,21 +217,25 @@ class Project {
   description: Map<string, string>
   buttons: Array<ButtonData>
   image: string
+  key: string
 
-  constructor(name: string, languages: Array<Map<string, string>>, description: Map<string, string>, buttons: Array<ButtonData>, image: string) {
+  constructor(name: string, languages: Array<Map<string, string>>, description: Map<string, string>, buttons: Array<ButtonData>, image: string, key: string) {
       this.name = name
       this.languages = languages
       this.description = description
       this.buttons = buttons
       this.image = image
+      this.key = key
   }
 }
 
 function Projects() {
+  const [showPopup, setShowPopup] = useState(false)
+
   const projects = [
-    new Project("ishell", [new Map([["language", "C++"], ["color", "rgb(26, 67, 126)"]])], new Map([["en", "A Unix shell for TOML."], ["es", "Una shell de Unix para TOML."]]), [new ButtonData(<SiGithub />, "Github", undefined, "https://github.com/BlackHoleMX12892/ishell"), new ButtonData(<Download />, "Download", () => {})], ishellScreenshot),
-    new Project("Trip Blueprint", [new Map([["language", "Swift"], ["color", "rgb(222, 93, 68)"]])], new Map([["en", "A trip planning app for macOS."], ["es", "App de macOS para planear viajes."]]), [new ButtonData(<SiGithub />, "Github", undefined, "https://github.com/BlackHoleMX12892/tripblueprint")], TripBlueprintScreenshot),
-    new Project("Hello World", [new Map([["language", "C"], ["color", "rgba(172, 186, 203)"]]), new Map([["language", "C++"], ["color", "rgb(26, 67, 126)"]])], new Map([["en", "A program that reads a binary file and prints \"Hello World!\""], ["es", "Un programa que lee un binario e imprime \"Hello World!\""]]), [new ButtonData(<SiGithub />, "Github", undefined, "https://github.com/BlackHoleMX12892/hello-world")], "https://github.com/BlackHoleMX12892/hello-world/blob/main/.github/assets/image.png?raw=true")
+    new Project("ishell", [new Map([["language", "C++"], ["color", "rgb(26, 67, 126)"], ["key", "cxx-ishell"]])], new Map([["en", "A Unix shell for TOML."], ["es", "Una shell de Unix para TOML."]]), [new ButtonData(<SiGithub />, "Github", "ishell-github-button", undefined, "https://github.com/BlackHoleMX12892/ishell"), new ButtonData(<Download />, "Download", "ishell-download-button", () => {setShowPopup(true)})], ishellScreenshot, "ishell-card"),
+    new Project("Trip Blueprint", [new Map([["language", "Swift"], ["color", "rgb(222, 93, 68)"], ["key", "swift-tripblueprint"]])], new Map([["en", "A trip planning app for macOS."], ["es", "App de macOS para planear viajes."]]), [new ButtonData(<SiGithub />, "Github", "trip-blueprint-github-button", undefined, "https://github.com/BlackHoleMX12892/tripblueprint")], TripBlueprintScreenshot, "trip-blueprint-card"),
+    new Project("Hello World", [new Map([["language", "C"], ["color", "rgba(172, 186, 203)"], ["key", "c-hello-world"]]), new Map([["language", "C++"], ["color", "rgb(26, 67, 126)"], ["key", "cxx-hello-world"]])], new Map([["en", "A program that reads a binary file and prints \"Hello World!\""], ["es", "Un programa que lee un binario e imprime \"Hello World!\""]]), [new ButtonData(<SiGithub />, "Github", "hello-world-github-button", undefined, "https://github.com/BlackHoleMX12892/hello-world")], "https://github.com/BlackHoleMX12892/hello-world/blob/main/.github/assets/image.png?raw=true", "hello-world-card")
   ]
 
   return (
@@ -236,12 +243,13 @@ function Projects() {
     <h1 style={{margin: "30px 0 10px 20px"}}>My projects:</h1>
     <div className="projects-container">
       {
-        projects.map(element => (
-          <ProjectCard name={element.name} languages={element.languages} description={element.description} buttons={element.buttons} image={element.image} />
+        projects.map((element) => (
+          <ProjectCard key={element.key} name={element.name} languages={element.languages} description={element.description} buttons={element.buttons} image={element.image} />
         ))
       }
     </div>
-      <Footer />
+    {showPopup == true ? <Popup title="Hallo World" content={ <p>hi</p> } /> : ""}
+    <Footer />
     </>
   )
 }
@@ -260,7 +268,7 @@ function ProjectCard({name, languages, description, buttons, image}: {name: stri
           <div className="project-card-language-container">
             {
               languages.map(lang => (
-                <p className="project-card-language" style={{'--language-color': `${lang.get("color")}`} as React.CSSProperties}>{lang.get("language")}</p>
+                <p key={lang.get("key")} className="project-card-language" style={{'--language-color': `${lang.get("color")}`} as React.CSSProperties}>{lang.get("language")}</p>
               ))
             }
           </div>
@@ -268,9 +276,9 @@ function ProjectCard({name, languages, description, buttons, image}: {name: stri
             {
               buttons.map(data => {
                   if (typeof data.action == "undefined" && typeof data.url == "string") {
-                    return(<a href={data.url}>{data.icon} <span>{data.label}</span></a>)
+                    return(<a key={data.key} href={data.url}>{data.icon} <span>{data.label}</span></a>)
                   } else if (typeof data.action == "function" && typeof data.url == "undefined") {
-                    return(<div onClick={data.action}>{data.icon} <span>{data.label}</span></div>)
+                    return(<div key={data.key} onClick={data.action}>{data.icon} <span>{data.label}</span></div>)
                   }
               })
             }

@@ -248,7 +248,7 @@ function Projects() {
         ))
       }
     </div>
-    {showPopup == true ? <Popup title="Hallo World" content={ <p>hi</p> } /> : ""}
+    {showPopup == true ? <Popup title="ishell downloads" content={ <p>hi</p> } setShowPopup={setShowPopup} /> : ""}
     <Footer />
     </>
   )

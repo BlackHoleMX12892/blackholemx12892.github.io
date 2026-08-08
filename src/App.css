@@ -419,3 +419,41 @@
 .project-card-language {
     margin-right: 10px;
 }
+
+/* Popup style */
+.popup-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    border-radius: 10px;
+    height: 35vw;
+    width: 50vw;
+    top: calc(50vh - (35vw / 2)); /*i need to substract half of the popups respective dimentions - done*/
+    left: calc(50vw - (50vw / 2));
+    /*i need to transfer these to the light version and create a dark one*/
+    background-color: rgb(235, 235, 235);
+    box-shadow: 2px 8px 16px -2px rgba(0, 0, 0, 0.3);
+}
+
+.popup-title-bar {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-close-button {
+    transition: scale 300ms ease-in;
+    position: absolute;
+    right: 26.75px;
+}
+
+.popup-close-button:hover {
+    scale: 1.2;
+}
+
+.popup-content {
+    margin: 0 20px 20px 20px;
+    height: calc(100% - 77.5px);
+}

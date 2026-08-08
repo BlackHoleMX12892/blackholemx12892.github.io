@@ -231,6 +231,7 @@ class Project {
 
 function Projects() {
   const [showPopup, setShowPopup] = useState(false)
+  const theme = useContext(ThemeContext)
 
   const projects = [
     new Project("ishell", [new Map([["language", "C++"], ["color", "rgb(26, 67, 126)"], ["key", "cxx-ishell"]])], new Map([["en", "A Unix shell for TOML."], ["es", "Una shell de Unix para TOML."]]), [new ButtonData(<SiGithub />, "Github", "ishell-github-button", undefined, "https://github.com/BlackHoleMX12892/ishell"), new ButtonData(<Download />, "Download", "ishell-download-button", () => {setShowPopup(true)})], ishellScreenshot, "ishell-card"),
@@ -248,7 +249,7 @@ function Projects() {
         ))
       }
     </div>
-    {showPopup == true ? <Popup title="ishell downloads" content={ <p>hi</p> } setShowPopup={setShowPopup} /> : ""}
+    {showPopup == true ? <Popup title="ishell downloads" content={ <p>hi</p> } setShowPopup={setShowPopup} theme={theme} /> : ""}
     <Footer />
     </>
   )

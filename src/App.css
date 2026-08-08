@@ -430,9 +430,17 @@
     width: 50vw;
     top: calc(50vh - (35vw / 2)); /*i need to substract half of the popups respective dimentions - done*/
     left: calc(50vw - (50vw / 2));
-    /*i need to transfer these to the light version and create a dark one*/
+    transition: background-color 300ms ease-in, color 300ms ease-in, box-shadow 300ms ease-in;
+}
+
+.popup-container-light {
     background-color: rgb(235, 235, 235);
     box-shadow: 2px 8px 16px -2px rgba(0, 0, 0, 0.3);
+}
+
+.popup-container-dark {
+    background-color: rgb(40, 40, 40);
+    box-shadow: 2px 8px 16px -2px rgba(255, 226, 141, 0.15);
 }
 
 .popup-title-bar {

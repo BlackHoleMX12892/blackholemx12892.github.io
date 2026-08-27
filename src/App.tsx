@@ -11,7 +11,9 @@ import CPPLogo from "./assets/ISO_C++_Logo.svg.webp"
 
 import TripBlueprintScreenshot from "./assets/projects-screenshots/Trip_Blueprint.png"
 import ishellScreenshot from "./assets/projects-screenshots/ishell-v0.4.0.png"
+
 import Popup from './components/Popup'
+import IshellDownloads from './components/IshellDownloads'
 
 const ThemeContext = createContext("light")
 
@@ -241,6 +243,7 @@ function Projects() {
 
   return (
     <>
+    <div onClick={() => showPopup == true ? setShowPopup(false) : null}>
     <h1 style={{margin: "30px 0 10px 20px"}}>My projects:</h1>
     <div className="projects-container">
       {
@@ -249,7 +252,8 @@ function Projects() {
         ))
       }
     </div>
-    {showPopup == true ? <Popup title="ishell downloads" content={ <p>hi</p> } setShowPopup={setShowPopup} theme={theme} /> : ""}
+    </div>
+    {showPopup == true ? <Popup title="ishell downloads" content={ <IshellDownloads /> } setShowPopup={setShowPopup} theme={theme} /> : ""}
     <Footer />
     </>
   )

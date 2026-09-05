@@ -45,6 +45,10 @@ const initialpage = localStorage.getItem("page") || "home"
   }
 
   function changePage(page: string, hideSidebar?: boolean) {
+    const content = document.getElementById("main-content")
+    if (content != null) {
+      content.scrollTop = 0
+    }
     setPage(page)
     if (typeof hideSidebar == "boolean") {
       setShowSidebar(!(hideSidebar))
@@ -85,7 +89,7 @@ const initialpage = localStorage.getItem("page") || "home"
           {theme == "light" ? <Moon /> : <Sun />}
         </div>
       </nav>
-      <main onClick={() => showSidebar == true ? setShowSidebar(false) : null} className="main-content">
+      <main onClick={() => showSidebar == true ? setShowSidebar(false) : null} className="main-content" id="main-content">
         {page == "home" ? <Home /> : ""}
         {page == "about" ? <About /> : ""}
         {page == "projects" ? <Projects /> : ""}

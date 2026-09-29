@@ -381,6 +381,8 @@
     margin-top: 20px;
     display: flex;
     flex-direction: row;
+    position: relative;
+    bottom: 0;
 }
 
 .project-card-buttons div, .project-card-buttons a {
@@ -406,6 +408,7 @@
 .project-card-language-container {
     display: flex;
     flex-direction: row;
+    margin-top: 10px;
 }
 
 .project-card-language::before {

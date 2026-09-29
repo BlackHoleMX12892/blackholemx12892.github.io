@@ -1,5 +1,5 @@
 import './App.css'
-import React, { useState, createContext, useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import profilepicture from './assets/149122895.jpeg'
 import { Mail, Sun, Moon, BadgeInfo, Languages, Menu, House, Boxes, ShieldUser, Download } from 'lucide-react'
 import { SiGithub } from '@icons-pack/react-simple-icons'
@@ -15,17 +15,7 @@ import ishellScreenshot from "./assets/projects-screenshots/ishell-v0.4.0.png"
 import Popup from './components/Popup'
 import IshellDownloads from './components/IshellDownloads'
 
-const ThemeContext = createContext("light")
-
-interface PageContextType {
-  page: string
-  setPage: React.Dispatch<React.SetStateAction<string>>
-  changePage: (page: string, hideSidebar?: boolean) => void
-}
-
-const PageContext = createContext<PageContextType | undefined>(undefined)
-
-const LanguageContext = createContext("en")
+import { ThemeContext, PageContext, LanguageContext } from './contexts.ts'
 
 export default function App() {
   const initialtheme = new Date().getHours() < 19 && new Date().getHours() > 6 ? "light" : "dark"

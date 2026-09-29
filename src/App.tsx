@@ -249,6 +249,7 @@ function Projects() {
       }
     </div>
     </div>
+    {/* terrible mechanism for a popup right here */}
     {showPopup == true ? <Popup title="ishell downloads" content={ <IshellDownloads /> } setShowPopup={setShowPopup} theme={theme} /> : ""}
     <Footer />
     </>

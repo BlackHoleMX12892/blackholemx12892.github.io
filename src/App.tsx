@@ -58,56 +58,56 @@ const initialpage = localStorage.getItem("page") || "home"
 
   return (
     <ThemeContext.Provider value={theme}>
-    <PageContext.Provider value={{ page, setPage, changePage }}>
-    <LanguageContext.Provider value={language}>
-    <div className={`main-container ${theme == "light" ? "main-container-light" : "main-container-dark"}`}>
-      <nav className={`navigation-bar ${theme == "light" ? "navigation-bar-light" : "navigation-bar-dark"}`}>
-        <div onClick={() => showSidebar == false ? setShowSidebar(true) : setShowSidebar(false)} className={"navigation-bar-switcher navigation-bar-menu-button"}>
-          <Menu />
+      <PageContext.Provider value={{ page, setPage, changePage }}>
+        <LanguageContext.Provider value={language}>
+        <div className={`main-container ${theme == "light" ? "main-container-light" : "main-container-dark"}`}>
+          <nav className={`navigation-bar ${theme == "light" ? "navigation-bar-light" : "navigation-bar-dark"}`}>
+            <div onClick={() => showSidebar == false ? setShowSidebar(true) : setShowSidebar(false)} className={"navigation-bar-switcher navigation-bar-menu-button"}>
+              <Menu />
+            </div>
+            <div className={`navigation-bar-item ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} style={{backgroundImage: `url(${profilepicture})`, backgroundSize: "cover", width: "19px", height: "19px", minWidth: "19px", minHeight: "19px", maxWidth: "19px", maxHeight: "19px", cursor: "default"}} />
+            <div className={`navigation-bar-item navigation-bar-button ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => changePage("home", true)}>
+              <p>{language == "en" ? "Home" : "Inicio"}</p>
+            </div>
+            <div className={`navigation-bar-item navigation-bar-button ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => changePage("about", true)}>
+              <p>{language == "en" ? "About" : "Información"}</p>
+            </div>
+            <div className={`navigation-bar-item navigation-bar-button ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => changePage("projects", true)}>
+              <p>{language == "en" ? "Projects" : "Proyectos"}</p>
+            </div>
+            <div className={`navigation-bar-item navigation-bar-button ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => changePage("contact", true)}>
+              <p>{language == "en" ? "Contact" : "Contacto"}</p>
+            </div>
+            <div className={`navigation-bar-item navigation-bar-button ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => changePage("privacy", true)}>
+              <p>{language == "en" ? "Privacy" : "Privacidad"}</p>
+            </div>
+            <div className="navigation-bar-switcher" onClick={() => language == "en" ? changeLang("es") : changeLang("en")} style={{marginLeft: "auto", marginRight: "15px", marginTop: "8px", display: "flex", flexDirection: "row", alignItems: "center", cursor: "default"}}>
+              <Languages />
+              {language == "en" ? "ES" : "EN"}
+            </div>
+            <div className="navigation-bar-switcher" onClick={() => theme == "light" ? setTheme("dark") : setTheme("light")} style={{marginRight: "10px", marginTop: "8px", cursor: "default"}}>
+              {theme == "light" ? <Moon /> : <Sun />}
+            </div>
+          </nav>
+          <main onClick={() => showSidebar == true ? setShowSidebar(false) : null} className="main-content" id="main-content">
+            {page == "home" ? <Home /> : ""}
+            {page == "about" ? <About /> : ""}
+            {page == "projects" ? <Projects /> : ""}
+            {page == "contact" ? <Contact /> : ""}
+            {page == "privacy" ? <Privacy /> : ""}
+          </main>
+          <aside className={`sidebar ${theme == "light" ? "sidebar-light" : "sidebar-dark"}`} style={showSidebar == true ? {display: "flex"} : {display: "none"}}>
+            <ul>
+              <li onClick={() => {changePage("home", true)}}><House /> <span>{language == "en" ? "Home" : "Inicio"}</span></li>
+              <li onClick={() => {changePage("about", true)}}><BadgeInfo /> <span>{language == "en" ? "About" : "Información"}</span></li>
+              <li onClick={() => {changePage("projects", true);}}><Boxes /> <span>{language == "en" ? "Projects" : "Proyectos"}</span></li>
+              <li onClick={() => {changePage("contact", true);}}><Mail /> <span>{language == "en" ? "Contact" : "Contacto"}</span></li>
+              <li onClick={() => {changePage("privacy", true);}}><ShieldUser /> <span>{language == "en" ? "Privacy" : "Privacidad"}</span></li>
+            </ul>
+          </aside>
         </div>
-        <div className={`navigation-bar-item ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} style={{backgroundImage: `url(${profilepicture})`, backgroundSize: "cover", width: "19px", height: "19px", minWidth: "19px", minHeight: "19px", maxWidth: "19px", maxHeight: "19px", cursor: "default"}} />
-        <div className={`navigation-bar-item navigation-bar-button ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => changePage("home", true)}>
-          <p>{language == "en" ? "Home" : "Inicio"}</p>
-        </div>
-        <div className={`navigation-bar-item navigation-bar-button ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => changePage("about", true)}>
-          <p>{language == "en" ? "About" : "Información"}</p>
-        </div>
-        <div className={`navigation-bar-item navigation-bar-button ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => changePage("projects", true)}>
-          <p>{language == "en" ? "Projects" : "Proyectos"}</p>
-        </div>
-        <div className={`navigation-bar-item navigation-bar-button ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => changePage("contact", true)}>
-          <p>{language == "en" ? "Contact" : "Contacto"}</p>
-        </div>
-        <div className={`navigation-bar-item navigation-bar-button ${theme == "light" ? "navigation-bar-item-light" : "navigation-bar-item-dark"}`} onClick={() => changePage("privacy", true)}>
-          <p>{language == "en" ? "Privacy" : "Privacidad"}</p>
-        </div>
-        <div className="navigation-bar-switcher" onClick={() => language == "en" ? changeLang("es") : changeLang("en")} style={{marginLeft: "auto", marginRight: "15px", marginTop: "8px", display: "flex", flexDirection: "row", alignItems: "center", cursor: "default"}}>
-          <Languages />
-          {language == "en" ? "ES" : "EN"}
-        </div>
-        <div className="navigation-bar-switcher" onClick={() => theme == "light" ? setTheme("dark") : setTheme("light")} style={{marginRight: "10px", marginTop: "8px", cursor: "default"}}>
-          {theme == "light" ? <Moon /> : <Sun />}
-        </div>
-      </nav>
-      <main onClick={() => showSidebar == true ? setShowSidebar(false) : null} className="main-content" id="main-content">
-        {page == "home" ? <Home /> : ""}
-        {page == "about" ? <About /> : ""}
-        {page == "projects" ? <Projects /> : ""}
-        {page == "contact" ? <Contact /> : ""}
-        {page == "privacy" ? <Privacy /> : ""}
-      </main>
-      <aside className={`sidebar ${theme == "light" ? "sidebar-light" : "sidebar-dark"}`} style={showSidebar == true ? {display: "flex"} : {display: "none"}}>
-        <ul>
-          <li onClick={() => {changePage("home", true)}}><House /> <span>{language == "en" ? "Home" : "Inicio"}</span></li>
-          <li onClick={() => {changePage("about", true)}}><BadgeInfo /> <span>{language == "en" ? "About" : "Información"}</span></li>
-          <li onClick={() => {changePage("projects", true);}}><Boxes /> <span>{language == "en" ? "Projects" : "Proyectos"}</span></li>
-          <li onClick={() => {changePage("contact", true);}}><Mail /> <span>{language == "en" ? "Contact" : "Contacto"}</span></li>
-          <li onClick={() => {changePage("privacy", true);}}><ShieldUser /> <span>{language == "en" ? "Privacy" : "Privacidad"}</span></li>
-        </ul>
-      </aside>
-    </div>
-    </LanguageContext.Provider>
-    </PageContext.Provider>
+        </LanguageContext.Provider>
+      </PageContext.Provider>
     </ThemeContext.Provider>
   )
 }
@@ -205,13 +205,15 @@ class ButtonData {
   icon: React.JSX.Element
   label: string
   key: string
+  labelEs?: string
   action?: () => void
   url?: string
 
-  constructor(icon: React.JSX.Element, label: string, key: string, action?: () => void, url?: string) {
+  constructor(icon: React.JSX.Element, label: string, key: string, labelEs?: string, action?: () => void, url?: string) {
     this.icon = icon
     this.label = label
     this.key = key
+    this.labelEs = labelEs
     this.action = action
     this.url = url
   }
@@ -240,9 +242,9 @@ function Projects() {
   const theme = useContext(ThemeContext)
 
   const projects = [
-    new Project("ishell", [new Map([["language", "C++"], ["color", "rgb(26, 67, 126)"], ["key", "cxx-ishell"]])], new Map([["en", "A Unix shell for TOML."], ["es", "Una shell de Unix para TOML."]]), [new ButtonData(<SiGithub />, "Github", "ishell-github-button", undefined, "https://github.com/BlackHoleMX12892/ishell"), new ButtonData(<Download />, "Download", "ishell-download-button", () => {setShowPopup(true)})], ishellScreenshot, "ishell-card"),
-    new Project("Trip Blueprint", [new Map([["language", "Swift"], ["color", "rgb(222, 93, 68)"], ["key", "swift-tripblueprint"]])], new Map([["en", "A trip planning app for macOS."], ["es", "App de macOS para planear viajes."]]), [new ButtonData(<SiGithub />, "Github", "trip-blueprint-github-button", undefined, "https://github.com/BlackHoleMX12892/tripblueprint")], TripBlueprintScreenshot, "trip-blueprint-card"),
-    new Project("Hello World", [new Map([["language", "C"], ["color", "rgba(172, 186, 203)"], ["key", "c-hello-world"]]), new Map([["language", "C++"], ["color", "rgb(26, 67, 126)"], ["key", "cxx-hello-world"]])], new Map([["en", "A program that reads a binary file and prints \"Hello World!\""], ["es", "Un programa que lee un binario e imprime \"Hello World!\""]]), [new ButtonData(<SiGithub />, "Github", "hello-world-github-button", undefined, "https://github.com/BlackHoleMX12892/hello-world")], "https://github.com/BlackHoleMX12892/hello-world/blob/main/.github/assets/image.png?raw=true", "hello-world-card")
+    new Project("ishell", [new Map([["language", "C++"], ["color", "rgb(26, 67, 126)"], ["key", "cxx-ishell"]])], new Map([["en", "A Unix shell for TOML."], ["es", "Una shell de Unix para TOML."]]), [new ButtonData(<SiGithub />, "Github", "ishell-github-button", undefined, undefined, "https://github.com/BlackHoleMX12892/ishell"), new ButtonData(<Download />, "Download", "ishell-download-button", "Descargar", () => {setShowPopup(true)})], ishellScreenshot, "ishell-card"),
+    new Project("Trip Blueprint", [new Map([["language", "Swift"], ["color", "rgb(222, 93, 68)"], ["key", "swift-tripblueprint"]])], new Map([["en", "A trip planning app for macOS."], ["es", "App de macOS para planear viajes."]]), [new ButtonData(<SiGithub />, "Github", "trip-blueprint-github-button", undefined, undefined, "https://github.com/BlackHoleMX12892/tripblueprint")], TripBlueprintScreenshot, "trip-blueprint-card"),
+    new Project("Hello World", [new Map([["language", "C"], ["color", "rgba(172, 186, 203)"], ["key", "c-hello-world"]]), new Map([["language", "C++"], ["color", "rgb(26, 67, 126)"], ["key", "cxx-hello-world"]])], new Map([["en", "A program that reads a binary file and prints \"Hello World!\""], ["es", "Un programa que lee un binario e imprime \"Hello World!\""]]), [new ButtonData(<SiGithub />, "Github", "hello-world-github-button", undefined, undefined, "https://github.com/BlackHoleMX12892/hello-world")], "https://github.com/BlackHoleMX12892/hello-world/blob/main/.github/assets/image.png?raw=true", "hello-world-card")
   ]
 
   return (
@@ -285,9 +287,9 @@ function ProjectCard({name, languages, description, buttons, image}: {name: stri
             {
               buttons.map(data => {
                   if (typeof data.action == "undefined" && typeof data.url == "string") {
-                    return(<a key={data.key} href={data.url}>{data.icon} <span>{data.label}</span></a>)
+                    return(<a key={data.key} href={data.url}>{data.icon} <span>{typeof data.labelEs != "undefined" ? (language == "es" ? data.labelEs : data.label) : data.label}</span></a>)
                   } else if (typeof data.action == "function" && typeof data.url == "undefined") {
-                    return(<div key={data.key} onClick={data.action}>{data.icon} <span>{data.label}</span></div>)
+                    return(<div key={data.key} onClick={data.action}>{data.icon} <span>{typeof data.labelEs != "undefined" ? (language == "es" ? data.labelEs : data.label) : data.label}</span></div>)
                   }
               })
             }
